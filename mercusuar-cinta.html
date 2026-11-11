@@ -32,9 +32,9 @@ button{font-family:inherit;cursor:pointer}
 .lyr-coverbg{inset:0;width:100%;height:100%;object-fit:cover;animation:skyIn 1.6s ease both}
 @keyframes skyIn{from{opacity:0}to{opacity:1}}
 @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
-.lyr-lighthouse{right:-4%;bottom:21%;height:58%;width:auto;animation:fadeUp 1.4s .9s ease both;filter:drop-shadow(0 10px 22px rgba(13,47,74,.35));z-index:2}
 /* BERKAS CAHAYA MERCUSUAR: elemen CSS murni (gradien + clip-path), berputar halus dari titik lampu */
-.beam-wrap{position:absolute;right:6.5%;bottom:calc(21% + 52%);width:0;height:0;z-index:1;pointer-events:none}
+/* Titik asal diselaraskan ke lampu mercusuar lukisan cover-bg (pusat lampu ≈42,4% dari kiri, ≈14,4% dari atas pada sumber 860×1859) */
+.beam-wrap{position:absolute;right:57.6%;bottom:85.6%;width:0;height:0;z-index:1;pointer-events:none}
 .beam{position:absolute;left:0;top:-26px;width:340px;height:52px;transform-origin:0 50%;
   background:linear-gradient(90deg,rgba(255,236,170,.85),rgba(255,236,170,.28) 55%,transparent 92%);
   clip-path:polygon(0 42%,100% 0,100% 100%,0 58%);animation:beamSwing 11s ease-in-out infinite alternate}
@@ -219,7 +219,6 @@ body.opened #btnMusic{display:flex}
     <div class="scene" id="scene">
       <img class="lyr lyr-coverbg" src="assets/undangya/mercusuar-cinta/cover-bg.webp" alt="Lukisan pantai senja: mercusuar merah-putih utuh di tebing karang, laut biru, perahu layar dan dermaga kayu" width="860" height="1864">
       <div class="beam-wrap" aria-hidden="true"><div class="beam"></div><div class="beam b2"></div><div class="lamp-halo"></div></div>
-      <img class="lyr lyr-lighthouse" src="assets/undangya/mercusuar-cinta/lighthouse.webp" alt="Mercusuar merah-putih utuh dari ujung finial sampai dasar tebing karang" data-wind="statis">
       <span class="gull" style="top:12%;--gd:27s;--gdl:-6s" aria-hidden="true"><svg width="42" height="16" viewBox="0 0 42 16"><path d="M2 12 Q11 3 21 11 Q31 3 40 12" fill="none" stroke="#fffdf6" stroke-width="2.4" stroke-linecap="round"/></svg></span>
       <span class="gull" style="top:19%;--gd:33s;--gdl:-19s" aria-hidden="true"><svg width="30" height="12" viewBox="0 0 42 16"><path d="M2 12 Q11 3 21 11 Q31 3 40 12" fill="none" stroke="#fffdf6" stroke-width="2.6" stroke-linecap="round"/></svg></span>
       <span class="gull" style="top:8%;--gd:38s;--gdl:-27s" aria-hidden="true"><svg width="24" height="10" viewBox="0 0 42 16"><path d="M2 12 Q11 3 21 11 Q31 3 40 12" fill="none" stroke="#eaf6fc" stroke-width="2.8" stroke-linecap="round"/></svg></span>
