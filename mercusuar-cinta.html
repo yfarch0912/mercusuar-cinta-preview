@@ -252,6 +252,80 @@ section .sub-h{width:fit-content;margin-left:auto;margin-right:auto;background:r
   .gb-item,.gt-item,.gal-slide .gal-num,.gal-slide .gal-cap{animation:none !important;opacity:1 !important;transform:none !important}
   .sec-orn,.beam,.gull,.petal,.flw,.lamp-halo,.live-dot,#btnMusic svg,.scene,.lyr-coverbg{animation:none !important}
 }
+
+/* ===== BESPOKE MERCUSUAR: CAHAYA PENUNTUN PULANG (2026-11-12) ===== */
+/* Berkas BERPUTAR PENUH dari titik lampu (ganti ayunan lama) */
+.beam-wrap{animation:beamSpin 26s linear infinite}
+.beam{animation:none;transform:rotate(0deg)}
+.beam.b2{animation:none;transform:rotate(180deg);opacity:.65}
+@keyframes beamSpin{to{transform:rotate(360deg)}}
+body.opening .cover-names{animation:nameGlow 1.15s ease both}
+@keyframes nameGlow{0%{text-shadow:0 2px 10px rgba(13,47,74,.55)}35%{text-shadow:0 0 18px #fff2b8,0 0 55px #ffd76a,0 0 95px #ffb84d;transform:scale(1.045)}100%{text-shadow:0 2px 10px rgba(13,47,74,.55)}}
+.star{position:absolute;width:5px;height:5px;border-radius:50%;background:#fff8dc;z-index:2;pointer-events:none;animation:twinkle var(--td,3.2s) ease-in-out infinite alternate;animation-delay:var(--tdl,0s)}
+@keyframes twinkle{from{opacity:.15;transform:scale(.6)}to{opacity:1;transform:scale(1.35)}}
+.ship-light{position:absolute;width:7px;height:7px;border-radius:50%;background:#ffd98a;box-shadow:0 0 12px 4px rgba(255,217,138,.55);z-index:2;pointer-events:none;animation:twinkle 4.6s ease-in-out infinite alternate}
+.sea-shimmer{position:absolute;left:-10%;width:120%;height:14px;z-index:2;pointer-events:none;background:linear-gradient(90deg,transparent,rgba(255,244,190,.5),transparent);filter:blur(3px);animation:shimmerSlide var(--shd,9s) ease-in-out infinite alternate}
+@keyframes shimmerSlide{from{transform:translateX(-4%) skewX(-8deg);opacity:.35}to{transform:translateX(4%) skewX(-8deg);opacity:.85}}
+.breath{animation:breathZoom 13s ease-in-out infinite alternate}
+@keyframes breathZoom{from{transform:scale(1)}to{transform:scale(1.045)}}
+.soft-bob{animation:softBob 5.5s ease-in-out infinite alternate}
+@keyframes softBob{from{transform:translateY(0)}to{transform:translateY(-3px)}}
+/* PELAT LANTAI + RELING */
+.floor-plate{display:flex;align-items:center;gap:11px;background:linear-gradient(180deg,#5d6d7a,#3d4c59 60%,#2e3d49);border:1px solid #22303c;border-radius:12px;padding:9px 14px;margin-bottom:22px;box-shadow:0 10px 22px rgba(13,47,74,.35),inset 0 1px 0 rgba(255,255,255,.35);position:relative;z-index:2}
+.fp-num{font-family:Georgia,serif;font-weight:900;font-size:15px;letter-spacing:-.5px;color:#ffd98a;border:2px solid #ffd98a;border-radius:50%;width:38px;height:38px;flex:none;display:flex;align-items:center;justify-content:center;background:rgba(13,47,74,.5)}
+.fp-txt{font-size:10.5px;letter-spacing:.3em;font-weight:800;color:#fdf7ea;text-align:left;line-height:1.5}
+.fp-rail{margin-left:auto;display:flex;gap:5px;align-items:flex-end}
+.fp-rail i{width:3px;height:16px;background:#cfe0ea;border-radius:2px;display:block}
+.fp-rail i:nth-child(2){height:20px}.fp-rail i:nth-child(4){height:20px}
+/* PEMBAGI OMBAK BERLAPIS SVG */
+.wave-div{position:relative;height:38px;overflow:hidden;margin:-64px -26px 26px;z-index:1}
+.wave-div svg{position:absolute;left:0;top:0;width:860px;height:38px;max-width:none}
+.wv{animation:waveDrift var(--wd,11s) linear infinite}
+.wv2{animation-duration:17s;animation-direction:reverse}
+.wv3{animation-duration:7.5s}
+@keyframes waveDrift{from{transform:translateX(0)}to{transform:translateX(-430px)}}
+/* MEMPELAI: BUSUR JENDELA MENARA + RELING BESI */
+.person{border-radius:175px 175px 24px 24px;padding-top:30px;overflow:hidden}
+.person .frame-pier{border-radius:150px 150px 8px 8px}
+.person::after{content:"";position:absolute;left:0;right:0;bottom:0;height:26px;background:repeating-linear-gradient(90deg,transparent 0 16px,#26313a 16px 19px,transparent 19px 34px),linear-gradient(180deg,transparent 8px,#26313a 8px 11px,transparent 11px 20px,#26313a 20px 23px,transparent 23px);opacity:.85;pointer-events:none}
+.person{padding-bottom:36px}
+/* COUNTDOWN: RUANG LAMPU / LENSA FRESNEL */
+.cd-box{border-radius:50%;aspect-ratio:1;max-width:82px;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;background:radial-gradient(circle,#fffdf2 30%,#f3e3b3 68%,#dfc078);overflow:visible}
+.cd-box::before{content:"";position:absolute;inset:-7px;border-radius:50%;border:3px dashed rgba(20,96,143,.65);animation:lensSpin 30s linear infinite}
+.cd-box::after{content:"";position:absolute;inset:4px;border-radius:50%;border:2px solid rgba(201,134,42,.55);animation:lensSpinR 22s linear infinite;pointer-events:none}
+@keyframes lensSpin{to{transform:rotate(360deg)}}
+@keyframes lensSpinR{to{transform:rotate(-360deg)}}
+.cd-box b,.cd-box span{position:relative;z-index:2}
+.fresnel-hero{width:118px;height:118px;margin:0 auto 14px;animation:lensPulse 3.6s ease-in-out infinite alternate;filter:drop-shadow(0 8px 18px rgba(233,181,88,.55))}
+@keyframes lensPulse{from{transform:scale(.96);opacity:.85}to{transform:scale(1.05);opacity:1}}
+/* GALERI: PORTHOLE KUNINGAN <> JENDELA BUSUR BERJENJANG */
+#railMain .gal-slide:nth-child(odd) .ph,#railSub .gal-slide:nth-child(odd) .ph{border-radius:50%;aspect-ratio:1;height:auto;border:11px solid #b08a3e;outline:3px solid #6e5426;box-shadow:0 16px 34px rgba(13,47,74,.4),inset 0 0 0 4px #ffe9a8;padding:0;background:#8a6a2a}
+#railMain .gal-slide:nth-child(odd) .ph img,#railSub .gal-slide:nth-child(odd) .ph img{border-radius:50%}
+#railMain .gal-slide:nth-child(even) .ph,#railSub .gal-slide:nth-child(even) .ph{border-radius:170px 170px 12px 12px}
+#railMain .gal-slide:nth-child(even) .ph img,#railSub .gal-slide:nth-child(even) .ph img{border-radius:160px 160px 6px 6px}
+.gal-num{letter-spacing:.12em}
+/* LOVE STORY: LOG SINYAL PENJAGA (malam) */
+.tl-card{background:linear-gradient(180deg,#123650,#0a2438);border-color:rgba(255,217,138,.45)}
+.tl-card p{color:#dceef7}.tl-title{color:#fff6d8}.tl-year{color:#ffd98a}
+.morse{display:flex;gap:5px;align-items:center;margin:2px 0 7px}
+.morse i{display:block;height:7px;border-radius:99px;background:#ffd98a}
+.morse .dot{width:7px}.morse .dash{width:24px;background:#7fc4e8}
+/* ACARA: PAPAN PENUNJUK ARAH PANTAI */
+.event{background:linear-gradient(160deg,#a4743f,#8a5f3a 55%,#77512c);border:3px solid #54381f;color:#fff8ec}
+.event h3{color:#fff6d8}.event .when{color:#ffe1a8}.event p{color:#fdf3dd}
+.event .sec-icon{filter:drop-shadow(0 3px 6px rgba(0,0,0,.4))}
+.event::before{border-color:rgba(255,233,168,.5)}
+/* RSVP: BUKU LOG PENJAGA */
+#rsvp .card{background:linear-gradient(90deg,transparent 26px,rgba(201,58,58,.55) 26px,rgba(201,58,58,.55) 28px,transparent 28px),repeating-linear-gradient(180deg,#fffdf6 0 27px,rgba(20,96,143,.28) 27px 28px)}
+#rsvp .card::before{display:none}
+#rsvp .field,#rsvp form,#rsvp .gb-list{margin-left:16px}
+.ombak-strip{width:100%;height:44px;object-fit:cover;opacity:.9;margin-top:20px}
+@media (prefers-reduced-motion: reduce){
+  .beam-wrap,.star,.ship-light,.sea-shimmer,.wv,.fresnel-hero,.breath,.soft-bob{animation:none !important}
+  .cd-box::before,.cd-box::after{animation:none !important}
+  body.opening .cover-names{animation:none !important}
+}
+
 </style>
 </head>
 <body>
@@ -269,9 +343,25 @@ section .sub-h{width:fit-content;margin-left:auto;margin-right:auto;background:r
       <img class="lyr flw sway-t" data-wind="tegak" style="right:-4%;bottom:-2%;width:33%;--sd:7.6s;animation-delay:2.7s" src="assets/undangya/mercusuar-cinta/flw-kamboja-kuning.webp" alt="">
       <img class="lyr flw sway-t" data-wind="tegak" style="left:16%;bottom:-3%;width:24%;--sd:9.4s;animation-delay:2.8s" src="assets/undangya/mercusuar-cinta/pampas.webp" alt="">
       <img class="lyr flw sway-t" data-wind="tegak" style="right:15%;bottom:-3%;width:25%;--sd:8.8s;animation-delay:2.9s" src="assets/undangya/mercusuar-cinta/palem.webp" alt="">
+      
+      <span class="star" style="left:8%;top:6%;--td:2.8s" aria-hidden="true"></span>
+      <span class="star" style="left:22%;top:11%;--td:3.6s;--tdl:-1s" aria-hidden="true"></span>
+      <span class="star" style="left:68%;top:5%;--td:3.1s;--tdl:-2s" aria-hidden="true"></span>
+      <span class="star" style="left:84%;top:13%;--td:4s;--tdl:-.6s" aria-hidden="true"></span>
+      <span class="star" style="left:55%;top:9%;--td:2.5s;--tdl:-1.4s" aria-hidden="true"></span>
+      <span class="star" style="left:36%;top:4%;--td:3.9s;--tdl:-2.6s" aria-hidden="true"></span>
+      <span class="star" style="left:92%;top:26%;--td:3.3s;--tdl:-1.9s" aria-hidden="true"></span>
+      <span class="star" style="left:5%;top:24%;--td:4.2s;--tdl:-3s" aria-hidden="true"></span>
+      <span class="ship-light" style="left:12%;top:52%;--tdl:-1s" aria-hidden="true"></span>
+      <span class="ship-light" style="left:86%;top:48%" aria-hidden="true"></span>
+      <span class="ship-light" style="left:74%;top:58%;--tdl:-2.4s" aria-hidden="true"></span>
+      <div class="sea-shimmer" style="top:56%;--shd:8s" aria-hidden="true"></div>
+      <div class="sea-shimmer" style="top:64%;--shd:11s" aria-hidden="true"></div>
+      <img class="lyr" src="assets/undangya/mercusuar-cinta/mc2-bintang-penuntun.webp" alt="" aria-hidden="true" style="left:6%;top:16%;width:11%;opacity:.9">
       <div class="petal-field" id="petalCover" aria-hidden="true"></div>
       <div class="cover-shade"></div>
     </div>
+    <img class="sec-orn orn-gantung" src="assets/undangya/mercusuar-cinta/mc2-lampu-dermaga.webp" alt="" aria-hidden="true" style="top:2px;left:10px;width:44px;height:64px;--sd:7.4s;z-index:9">
     <img class="sec-orn orn-gantung" src="assets/undangya/mercusuar-cinta/mercu-jangkar-rantai.webp" alt="" aria-hidden="true" style="top:8px;right:10px;width:46px;height:46px;--sd:8s;z-index:9">
     <div class="cover-ui">
       <div class="cover-kicker">THE WEDDING OF</div>
@@ -289,6 +379,8 @@ section .sub-h{width:fit-content;margin-left:auto;margin-right:auto;background:r
 
     <!-- ================= PEMBUKA ================= -->
     <section id="sambutan">
+      <div class="wave-div" aria-hidden="true"><svg viewBox="0 0 430 38" preserveAspectRatio="none" aria-hidden="true"><path class="wv" style="--wd:13s" opacity="0.45" fill="#3d9bc4" d="M0 16 Q 54 9 108 16 Q 162 23 216 16 Q 270 9 324 16 Q 378 23 432 16 Q 486 9 540 16 Q 594 23 648 16 Q 702 9 756 16 Q 810 23 864 16 L860 38 L0 38 Z"/><path class="wv wv2" style="--wd:11s" opacity="0.65" fill="#14608f" d="M0 22 Q 54 14 108 22 Q 162 30 216 22 Q 270 14 324 22 Q 378 30 432 22 Q 486 14 540 22 Q 594 30 648 22 Q 702 14 756 22 Q 810 30 864 22 L860 38 L0 38 Z"/><path class="wv wv3" style="--wd:11s" opacity="0.95" fill="#0d2f4a" d="M0 28 Q 54 21 108 28 Q 162 35 216 28 Q 270 21 324 28 Q 378 35 432 28 Q 486 21 540 28 Q 594 35 648 28 Q 702 21 756 28 Q 810 35 864 28 L860 38 L0 38 Z"/></svg></div>
+      <div class="floor-plate rv rv-up"><span class="fp-num">I</span><span class="fp-txt">LANTAI I · DASAR MENARA — SAMBUTAN</span><span class="fp-rail" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span></div>
       <img class="sec-orn orn-gantung rv rv-drop" src="assets/undangya/mercusuar-cinta/mercu-tali-simpul-hati.webp" alt="" aria-hidden="true" style="top:12px;right:12px;--sd:8.4s;--rvd:.15s">
         <div class="sec-head rv rv-up">
           <svg class="sec-icon rv rv-drop" style="--rvd:.05s" viewBox="0 0 64 64" aria-hidden="true"><path d="M26 56 L29 22 H35 L38 56 Z" fill="#fdf7ea" stroke="#0d2f4a" stroke-width="2"/><path d="M27.6 34 H36.4 M26.8 44 H37.2" stroke="#c93a3a" stroke-width="5"/><path d="M28 22 H36 L34 15 H30 Z" fill="#0d2f4a"/><circle cx="32" cy="11" r="4" fill="#ffd98a" stroke="#0d2f4a" stroke-width="1.6"/><path d="M14 56 H50" stroke="#0d2f4a" stroke-width="2.4" stroke-linecap="round"/><path d="M18 12 L26 17 M46 12 L38 17" stroke="#e9b558" stroke-width="2.4" stroke-linecap="round"/></svg>
@@ -301,11 +393,15 @@ section .sub-h{width:fit-content;margin-left:auto;margin-right:auto;background:r
           <p class="rv rv-pop" style="--rvd:.22s;margin-top:12px;font-size:12px;letter-spacing:.24em;color:var(--red-d);font-weight:700">QS. AR-RUM : 21</p>
           <p class="rv rv-up" style="--rvd:.32s;margin-top:16px;font-size:14px;line-height:1.75">Seperti cahaya mercusuar yang setia menuntun kapal pulang, dua hati ini akhirnya menemukan pelabuhannya. Dengan penuh syukur, kami mengundang Bapak/Ibu/Saudara/i untuk hadir dan memberi doa restu pada hari bahagia kami.</p>
         </div>
+      <img class="ombak-strip rv rv-wide" src="assets/undangya/mercusuar-cinta/mc2-ombak-lapis.webp" alt="" aria-hidden="true">
     </section>
 
     <!-- ================= MEMPELAI ================= -->
     <section id="mempelai">
+      <div class="wave-div" aria-hidden="true"><svg viewBox="0 0 430 38" preserveAspectRatio="none" aria-hidden="true"><path class="wv" style="--wd:13s" opacity="0.45" fill="#3d9bc4" d="M0 16 Q 54 9 108 16 Q 162 23 216 16 Q 270 9 324 16 Q 378 23 432 16 Q 486 9 540 16 Q 594 23 648 16 Q 702 9 756 16 Q 810 23 864 16 L860 38 L0 38 Z"/><path class="wv wv2" style="--wd:11s" opacity="0.65" fill="#14608f" d="M0 22 Q 54 14 108 22 Q 162 30 216 22 Q 270 14 324 22 Q 378 30 432 22 Q 486 14 540 22 Q 594 30 648 22 Q 702 14 756 22 Q 810 30 864 22 L860 38 L0 38 Z"/><path class="wv wv3" style="--wd:11s" opacity="0.95" fill="#0d2f4a" d="M0 28 Q 54 21 108 28 Q 162 35 216 28 Q 270 21 324 28 Q 378 35 432 28 Q 486 21 540 28 Q 594 35 648 28 Q 702 21 756 28 Q 810 35 864 28 L860 38 L0 38 Z"/></svg></div>
+      <div class="floor-plate rv rv-up"><span class="fp-num">II</span><span class="fp-txt">LANTAI II · JENDELA MENARA — MEMPELAI</span><span class="fp-rail" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span></div>
       <img class="sec-orn orn-spin rv rv-zoom" src="assets/undangya/mercusuar-cinta/mercu-kemudi-kapal.webp" alt="" aria-hidden="true" style="top:12px;left:12px;--rvd:.15s">
+      <img class="sec-orn rv rv-zoom" src="assets/undangya/mercusuar-cinta/mc2-jendela-menara.webp" alt="" aria-hidden="true" style="top:64px;right:10px;width:52px;height:68px;--rvd:.2s">
       <div class="sec-petals" aria-hidden="true"></div>
       <div class="sec-head rv rv-up">
         <svg class="sec-icon rv rv-drop" style="--rvd:.05s" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="30" r="20" fill="none" stroke="#0d2f4a" stroke-width="2.6"/><circle cx="32" cy="30" r="5" fill="#c93a3a"/><path d="M32 10 V25 M32 35 V50 M12 30 H27 M37 30 H52" stroke="#0d2f4a" stroke-width="2.6"/><path d="M18 16 L28 26 M46 16 L36 26 M18 44 L28 34 M46 44 L36 34" stroke="#14608f" stroke-width="2.2"/><path d="M32 2 V8 M32 52 V58" stroke="#e9b558" stroke-width="3" stroke-linecap="round"/></svg>
@@ -330,14 +426,17 @@ section .sub-h{width:fit-content;margin-left:auto;margin-right:auto;background:r
         </div>
       </div>
       <div class="rv rv-zoom panel-glass" style="margin-top:36px;padding:20px 18px 14px">
-        <div class="frame-pier" style="height:320px"><img src="assets/undangya/mercusuar-cinta/hero.webp" alt="Meyzsa dan Fahrezzi berdiri bersama di dermaga kayu dengan mercusuar merah-putih di belakang"></div>
+        <div class="frame-pier breath" style="height:320px"><img src="assets/undangya/mercusuar-cinta/hero.webp" alt="Meyzsa dan Fahrezzi berdiri bersama di dermaga kayu dengan mercusuar merah-putih di belakang"></div>
         <p class="gal-cap rv rv-up" style="--rvd:.3s">Di dermaga kayu, di bawah cahaya mercusuar kami.</p>
       </div>
     </section>
 
     <!-- ================= LOVE STORY ================= -->
     <section id="kisah">
+      <div class="wave-div" aria-hidden="true"><svg viewBox="0 0 430 38" preserveAspectRatio="none" aria-hidden="true"><path class="wv" style="--wd:13s" opacity="0.45" fill="#3d9bc4" d="M0 16 Q 54 9 108 16 Q 162 23 216 16 Q 270 9 324 16 Q 378 23 432 16 Q 486 9 540 16 Q 594 23 648 16 Q 702 9 756 16 Q 810 23 864 16 L860 38 L0 38 Z"/><path class="wv wv2" style="--wd:11s" opacity="0.65" fill="#14608f" d="M0 22 Q 54 14 108 22 Q 162 30 216 22 Q 270 14 324 22 Q 378 30 432 22 Q 486 14 540 22 Q 594 30 648 22 Q 702 14 756 22 Q 810 30 864 22 L860 38 L0 38 Z"/><path class="wv wv3" style="--wd:11s" opacity="0.95" fill="#0d2f4a" d="M0 28 Q 54 21 108 28 Q 162 35 216 28 Q 270 21 324 28 Q 378 35 432 28 Q 486 21 540 28 Q 594 35 648 28 Q 702 21 756 28 Q 810 35 864 28 L860 38 L0 38 Z"/></svg></div>
+      <div class="floor-plate rv rv-up"><span class="fp-num">III</span><span class="fp-txt">LANTAI III · RUANG LOG SINYAL — KISAH</span><span class="fp-rail" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span></div>
       <img class="sec-orn orn-melayang rv rv-rotr" src="assets/undangya/mercusuar-cinta/mercu-perahu-layar-mini.webp" alt="" aria-hidden="true" style="top:14px;right:10px;--sd:6.2s;--rvd:.15s">
+      <img class="sec-orn rv rv-zoom" src="assets/undangya/mercusuar-cinta/mc2-sinyal-morse.webp" alt="" aria-hidden="true" style="top:70px;left:10px;width:54px;height:54px;--rvd:.2s">
         <div class="sec-head rv rv-up">
           <svg class="sec-icon rv rv-drop" style="--rvd:.05s" viewBox="0 0 64 64" aria-hidden="true"><path d="M32 54 C14 40 8 28 12 18 C16 8 28 8 32 18 C36 8 48 8 52 18 C56 28 50 40 32 54 Z" fill="#ff8a70" stroke="#a52a2a" stroke-width="2"/><path d="M20 22 C24 16 30 15 32 20" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/></svg>
           <div class="sec-kicker rv rv-down" style="--rvd:.12s">LOVE STORY</div>
@@ -347,19 +446,19 @@ section .sub-h{width:fit-content;margin-left:auto;margin-right:auto;background:r
         <div class="tl">
           <div class="tl-item rv rv-left"><span class="tl-dot" aria-hidden="true"></span><div class="tl-card">
               <img class="tl-thumb rv rv-zoom" style="--rvd:.14s" src="assets/undangya/mercusuar-cinta/galeri-6.webp" alt="Pasangan di pagi hari dekat perahu nelayan" loading="lazy" decoding="async">
-              <div class="tl-year rv rv-pop" style="--rvd:.22s">2019</div><div class="tl-title rv rv-up" style="--rvd:.3s">Pertama Bertemu</div>
+              <div class="morse" aria-hidden="true"><i class="dot"></i><i class="dash"></i><i class="dot"></i></div><div class="tl-year rv rv-pop" style="--rvd:.22s">2019</div><div class="tl-title rv rv-up" style="--rvd:.3s">Sinyal Pertama</div>
               <p class="rv rv-up" style="--rvd:.38s">Berawal dari pertemuan sederhana di kampus — obrolan sore itu menjadi sinyal pertama, seperti kedip awal cahaya mercusuar di kejauhan.</p></div></div>
           <div class="tl-item rv rv-right"><span class="tl-dot" aria-hidden="true"></span><div class="tl-card">
               <img class="tl-thumb rv rv-zoom" style="--rvd:.14s" src="assets/undangya/mercusuar-cinta/galeri-2.webp" alt="Pasangan di samping perahu layar" loading="lazy" decoding="async">
-              <div class="tl-year rv rv-pop" style="--rvd:.22s">2023</div><div class="tl-title rv rv-up" style="--rvd:.3s">Lamaran</div>
+              <div class="morse" aria-hidden="true"><i class="dash"></i><i class="dot"></i><i class="dash"></i><i class="dot"></i></div><div class="tl-year rv rv-pop" style="--rvd:.22s">2023</div><div class="tl-title rv rv-up" style="--rvd:.3s">Cahaya Semakin Terang</div>
               <p class="rv rv-up" style="--rvd:.38s">Di hadapan keluarga tercinta, Fahrezzi menyampaikan niat sucinya. Dengan restu kedua orang tua, Meyzsa menerimanya dengan hati berbunga-bunga.</p></div></div>
           <div class="tl-item rv rv-left"><span class="tl-dot" aria-hidden="true"></span><div class="tl-card">
               <img class="tl-thumb rv rv-zoom" style="--rvd:.14s" src="assets/undangya/mercusuar-cinta/galeri-4.webp" alt="Pasangan di pasir senja" loading="lazy" decoding="async">
-              <div class="tl-year rv rv-pop" style="--rvd:.22s">2025</div><div class="tl-title rv rv-up" style="--rvd:.3s">Menyatukan Dua Keluarga</div>
+              <div class="morse" aria-hidden="true"><i class="dot"></i><i class="dot"></i><i class="dash"></i></div><div class="tl-year rv rv-pop" style="--rvd:.22s">2025</div><div class="tl-title rv rv-up" style="--rvd:.3s">Jangkar Diturunkan</div>
               <p class="rv rv-up" style="--rvd:.38s">Persiapan demi persiapan kami jalani bersama — dua keluarga saling mengenal, menyatukan cerita dan doa, hingga hari bahagia terasa kian dekat.</p></div></div>
           <div class="tl-item rv rv-right"><span class="tl-dot" aria-hidden="true"></span><div class="tl-card">
               <img class="tl-thumb rv rv-zoom" style="--rvd:.14s" src="assets/undangya/mercusuar-cinta/hero.webp" alt="Pasangan di hari bahagia" loading="lazy" decoding="async">
-              <div class="tl-year rv rv-pop" style="--rvd:.22s">2027</div><div class="tl-title rv rv-up" style="--rvd:.3s">Hari Bahagia</div>
+              <div class="morse" aria-hidden="true"><i class="dash"></i><i class="dash"></i><i class="dot"></i><i class="dash"></i></div><div class="tl-year rv rv-pop" style="--rvd:.22s">2027</div><div class="tl-title rv rv-up" style="--rvd:.3s">Pulang ke Pelabuhan Hati</div>
               <p class="rv rv-up" style="--rvd:.38s">Sabtu, 12 Juni 2027 — kapal kami berlabuh di pelabuhan terindah. Kami mohon doa restu agar langkah ini diberkahi hingga selamanya.</p></div></div>
         </div>
         <p class="demo-note rv rv-up">Linimasa &amp; teks kisah di atas adalah contoh untuk tampilan tema.</p>
@@ -367,12 +466,15 @@ section .sub-h{width:fit-content;margin-left:auto;margin-right:auto;background:r
 
     <!-- ================= COUNTDOWN + ACARA ================= -->
     <section id="acara">
+      <div class="wave-div" aria-hidden="true"><svg viewBox="0 0 430 38" preserveAspectRatio="none" aria-hidden="true"><path class="wv" style="--wd:13s" opacity="0.45" fill="#3d9bc4" d="M0 16 Q 54 9 108 16 Q 162 23 216 16 Q 270 9 324 16 Q 378 23 432 16 Q 486 9 540 16 Q 594 23 648 16 Q 702 9 756 16 Q 810 23 864 16 L860 38 L0 38 Z"/><path class="wv wv2" style="--wd:11s" opacity="0.65" fill="#14608f" d="M0 22 Q 54 14 108 22 Q 162 30 216 22 Q 270 14 324 22 Q 378 30 432 22 Q 486 14 540 22 Q 594 30 648 22 Q 702 14 756 22 Q 810 30 864 22 L860 38 L0 38 Z"/><path class="wv wv3" style="--wd:11s" opacity="0.95" fill="#0d2f4a" d="M0 28 Q 54 21 108 28 Q 162 35 216 28 Q 270 21 324 28 Q 378 35 432 28 Q 486 21 540 28 Q 594 35 648 28 Q 702 21 756 28 Q 810 35 864 28 L860 38 L0 38 Z"/></svg></div>
+      <div class="floor-plate rv rv-up"><span class="fp-num">IV</span><span class="fp-txt">LANTAI IV · RUANG LAMPU — ACARA</span><span class="fp-rail" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span></div>
       <img class="sec-orn orn-tegak rv rv-up" src="assets/undangya/mercusuar-cinta/mercu-mercusuar-mini-biru.webp" alt="" aria-hidden="true" style="top:12px;left:10px;--sd:9s;--rvd:.15s">
         <div class="sec-head rv rv-up head-glass">
           <svg class="sec-icon rv rv-drop" style="--rvd:.05s" viewBox="0 0 64 64" aria-hidden="true"><path d="M32 6 V14 M32 50 V58 M10 22 L16 27 M54 22 L48 27" stroke="#0d2f4a" stroke-width="2.6" stroke-linecap="round"/><path d="M32 16 C24 24 20 30 20 38 a12 12 0 0 0 24 0 C44 30 40 24 32 16 Z" fill="#fdf7ea" stroke="#0d2f4a" stroke-width="2.2"/><path d="M25 38 a7 7 0 0 0 14 0" fill="none" stroke="#c93a3a" stroke-width="4"/><path d="M32 58 V44" stroke="#0d2f4a" stroke-width="2.6"/><path d="M22 58 L32 50 L42 58" fill="none" stroke="#0d2f4a" stroke-width="2.6" stroke-linecap="round"/></svg>
           <div class="sec-kicker rv rv-down" style="--rvd:.12s">HITUNG MUNDUR</div>
           <h2 class="sec-title serif rv rv-up" style="--rvd:.2s">Menuju Hari Bahagia</h2>
         </div>
+        <img class="fresnel-hero rv rv-zoom" src="assets/undangya/mercusuar-cinta/mc2-lensa-fresnel.webp" alt="Lensa Fresnel mercusuar: cincin kaca konsentris bercahaya" >
         <div class="countdown rv rv-zoom" id="countdown" data-target="2027-06-12T08:00:00+07:00" aria-label="Hitung mundur menuju akad nikah">
           <div class="cd-box rv rv-pop" style="--rvd:.05s"><b id="cdD">0</b><span>Hari</span></div>
           <div class="cd-box rv rv-pop" style="--rvd:.15s"><b id="cdH">0</b><span>Jam</span></div>
@@ -390,6 +492,7 @@ section .sub-h{width:fit-content;margin-left:auto;margin-right:auto;background:r
           <a class="btn btn-alt rv rv-pop" style="--rvd:.4s" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Akad+Nikah+Meyzsa+%26+Fahrezzi&amp;dates=20270612T010000Z%2F20270612T030000Z&amp;details=Akad+Nikah+Meyzsa+Putri+Ananda+%26+Ahmad+Fahrezzi+Pratama&amp;location=Masjid+Agung+Al-Azhar%2C+Kebayoran+Baru%2C+Jakarta+Selatan" target="_blank" rel="noopener">SIMPAN KE KALENDER</a>
           <button class="btn btn-alt rv rv-pop" style="--rvd:.48s" type="button" data-ics data-file="akad-meyzsa-fahrezzi" data-title="Akad Nikah Meyzsa &amp; Fahrezzi" data-start="20270612T010000Z" data-end="20270612T030000Z" data-loc="Masjid Agung Al-Azhar, Kebayoran Baru, Jakarta Selatan" data-desc="Akad Nikah Meyzsa Putri Ananda &amp; Ahmad Fahrezzi Pratama">UNDUH .ICS</button>
         </div>
+        <img class="sec-orn rv rv-zoom" src="assets/undangya/mercusuar-cinta/mc2-papan-arah.webp" alt="" aria-hidden="true" style="position:relative;width:74px;height:74px;margin:0 auto 10px;display:block">
         <div class="card event rv rv-right">
           <svg class="sec-icon rv rv-drop" style="--rvd:.05s" viewBox="0 0 64 64" aria-hidden="true"><path d="M34 8 L34 44 L14 44 Z" fill="#fdf7ea" stroke="#0d2f4a" stroke-width="2.2"/><path d="M38 20 L38 44 L50 44 Z" fill="#bfe3f2" stroke="#0d2f4a" stroke-width="2.2"/><path d="M10 48 H54 L48 56 H16 Z" fill="#c93a3a" stroke="#a52a2a" stroke-width="2"/><path d="M32 8 V48" stroke="#0d2f4a" stroke-width="2.2"/></svg>
           <h3 class="rv rv-up" style="--rvd:.16s">Resepsi</h3>
@@ -424,6 +527,8 @@ section .sub-h{width:fit-content;margin-left:auto;margin-right:auto;background:r
 
     <!-- ================= GALERI ================= -->
     <section id="galeri">
+      <div class="wave-div" aria-hidden="true"><svg viewBox="0 0 430 38" preserveAspectRatio="none" aria-hidden="true"><path class="wv" style="--wd:13s" opacity="0.45" fill="#3d9bc4" d="M0 16 Q 54 9 108 16 Q 162 23 216 16 Q 270 9 324 16 Q 378 23 432 16 Q 486 9 540 16 Q 594 23 648 16 Q 702 9 756 16 Q 810 23 864 16 L860 38 L0 38 Z"/><path class="wv wv2" style="--wd:11s" opacity="0.65" fill="#14608f" d="M0 22 Q 54 14 108 22 Q 162 30 216 22 Q 270 14 324 22 Q 378 30 432 22 Q 486 14 540 22 Q 594 30 648 22 Q 702 14 756 22 Q 810 30 864 22 L860 38 L0 38 Z"/><path class="wv wv3" style="--wd:11s" opacity="0.95" fill="#0d2f4a" d="M0 28 Q 54 21 108 28 Q 162 35 216 28 Q 270 21 324 28 Q 378 35 432 28 Q 486 21 540 28 Q 594 35 648 28 Q 702 21 756 28 Q 810 35 864 28 L860 38 L0 38 Z"/></svg></div>
+      <div class="floor-plate rv rv-up"><span class="fp-num">V</span><span class="fp-txt">LANTAI V · JENDELA & PORTHOLE — GALERI</span><span class="fp-rail" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span></div>
       <img class="sec-orn rv rv-rotr" src="assets/undangya/mercusuar-cinta/mercu-kerang-kipas.webp" alt="" aria-hidden="true" style="top:14px;right:12px;--rvd:.15s">
       <div class="sec-head rv rv-up">
         <svg class="sec-icon rv rv-drop" style="--rvd:.05s" viewBox="0 0 64 64" aria-hidden="true"><path d="M32 50 C20 44 12 36 12 26 C12 16 22 12 32 20 C42 12 52 16 52 26 C52 36 44 44 32 50 Z" fill="#fdf7ea" stroke="#0d2f4a" stroke-width="2.2"/><path d="M22 28 C26 24 30 24 32 28 C34 24 38 24 42 28" fill="none" stroke="#c93a3a" stroke-width="2.2" stroke-linecap="round"/><path d="M24 36 C28 33 36 33 40 36" fill="none" stroke="#14608f" stroke-width="2.2" stroke-linecap="round"/><path d="M14 54 C22 50 42 50 50 54" fill="none" stroke="#e9b558" stroke-width="2.4" stroke-linecap="round"/></svg>
@@ -431,27 +536,29 @@ section .sub-h{width:fit-content;margin-left:auto;margin-right:auto;background:r
         <h2 class="sec-title serif rv rv-up" style="--rvd:.2s">Galeri Pantai Kami</h2>
         <p class="sec-sub rv rv-up" style="--rvd:.3s">Delapan potret di pantai kami — ketuk untuk memperbesar</p>
       </div>
-      <div class="gal-hint rv rv-wide" style="--rvd:.05s">— GESER KANAN · KIRI —</div>
-      <div class="rail-label rv rv-left" style="--rvd:.1s">POTRET PILIHAN · FRAME KAYU &amp; TALI</div>
+      <div class="gal-hint soft-bob rv rv-wide" style="--rvd:.05s">— GESER KANAN · KIRI —</div>
+      <div class="rail-label rv rv-left" style="--rvd:.1s">JENDELA BERJENJANG · PORTHOLE KUNINGAN &amp; BUSUR MENARA</div>
       <div class="gal-rail" id="railMain">
-        <div class="gal-slide rv rv-rotr" style="--rvd:0.00s"><span class="gal-num">01 / 08</span><figure><div class="frame-pier ph"><img class="gal-photo" src="assets/undangya/mercusuar-cinta/galeri-1.webp" alt="Pasangan berjalan bergandengan di dermaga kayu" loading="lazy"></div><figcaption class="gal-cap">Dermaga Kayu</figcaption></figure></div>
-        <div class="gal-slide rv rv-up" style="--rvd:0.05s"><span class="gal-num">02 / 08</span><figure><div class="frame-pier ph"><img class="gal-photo" src="assets/undangya/mercusuar-cinta/galeri-2.webp" alt="Pasangan di samping perahu layar putih" loading="lazy"></div><figcaption class="gal-cap">Perahu Layar</figcaption></figure></div>
-        <div class="gal-slide rv rv-zoom" style="--rvd:0.10s"><span class="gal-num">03 / 08</span><figure><div class="frame-pier ph"><img class="gal-photo" src="assets/undangya/mercusuar-cinta/galeri-3.webp" alt="Pasangan di tebing di bawah mercusuar merah-putih" loading="lazy"></div><figcaption class="gal-cap">Tebing Mercusuar</figcaption></figure></div>
-        <div class="gal-slide rv rv-rotl" style="--rvd:0.15s"><span class="gal-num">04 / 08</span><figure><div class="frame-pier ph"><img class="gal-photo" src="assets/undangya/mercusuar-cinta/galeri-4.webp" alt="Pasangan duduk di pasir saat senja" loading="lazy"></div><figcaption class="gal-cap">Pasir Senja</figcaption></figure></div>
+        <div class="gal-slide rv rv-rotr" style="--rvd:0.00s"><span class="gal-num">LANTAI 1 · UTARA</span><figure><div class="frame-pier ph"><img class="gal-photo" src="assets/undangya/mercusuar-cinta/galeri-1.webp" alt="Pasangan berjalan bergandengan di dermaga kayu" loading="lazy"></div><figcaption class="gal-cap">Dermaga Kayu</figcaption></figure></div>
+        <div class="gal-slide rv rv-up" style="--rvd:0.05s"><span class="gal-num">LANTAI 2 · TIMUR LAUT</span><figure><div class="frame-pier ph"><img class="gal-photo" src="assets/undangya/mercusuar-cinta/galeri-2.webp" alt="Pasangan di samping perahu layar putih" loading="lazy"></div><figcaption class="gal-cap">Perahu Layar</figcaption></figure></div>
+        <div class="gal-slide rv rv-zoom" style="--rvd:0.10s"><span class="gal-num">LANTAI 3 · TIMUR</span><figure><div class="frame-pier ph"><img class="gal-photo" src="assets/undangya/mercusuar-cinta/galeri-3.webp" alt="Pasangan di tebing di bawah mercusuar merah-putih" loading="lazy"></div><figcaption class="gal-cap">Tebing Mercusuar</figcaption></figure></div>
+        <div class="gal-slide rv rv-rotl" style="--rvd:0.15s"><span class="gal-num">LANTAI 4 · TENGGARA</span><figure><div class="frame-pier ph"><img class="gal-photo" src="assets/undangya/mercusuar-cinta/galeri-4.webp" alt="Pasangan duduk di pasir saat senja" loading="lazy"></div><figcaption class="gal-cap">Pasir Senja</figcaption></figure></div>
       </div>
       <div class="rail-meta rv rv-up" style="--rvd:.15s"><span class="rail-frac" id="fracMain">1 / 4</span><span class="rail-dots" id="dotsMain"></span></div>
-      <div class="rail-label rv rv-left" style="--rvd:.1s">POTRET LEPAS · TANPA FRAME</div>
+      <div class="rail-label rv rv-left" style="--rvd:.1s">JENDELA LANJUTAN · ARAH MATA ANGIN</div>
       <div class="gal-rail" id="railSub">
-        <div class="gal-slide small rv rv-up" style="--rvd:0.00s"><span class="gal-num">05 / 08</span><figure><div class="plain ph"><img class="gal-photo" src="assets/undangya/mercusuar-cinta/galeri-5.webp" alt="Pasangan di ayunan pantai berhias kamboja" loading="lazy"></div><figcaption class="gal-cap">Ayunan Pantai</figcaption></figure></div>
-        <div class="gal-slide small rv rv-rotr" style="--rvd:0.05s"><span class="gal-num">06 / 08</span><figure><div class="plain ph"><img class="gal-photo" src="assets/undangya/mercusuar-cinta/galeri-6.webp" alt="Pasangan di dekat perahu nelayan pada pagi hari" loading="lazy"></div><figcaption class="gal-cap">Perahu Nelayan Pagi</figcaption></figure></div>
-        <div class="gal-slide small rv rv-zoom" style="--rvd:0.10s"><span class="gal-num">07 / 08</span><figure><div class="plain ph"><img class="gal-photo" src="assets/undangya/mercusuar-cinta/galeri-7.webp" alt="Pasangan di karang dengan ombak menyembur" loading="lazy"></div><figcaption class="gal-cap">Karang &amp; Ombak</figcaption></figure></div>
-        <div class="gal-slide small rv rv-rotl" style="--rvd:0.15s"><span class="gal-num">08 / 08</span><figure><div class="plain ph"><img class="gal-photo" src="assets/undangya/mercusuar-cinta/galeri-8.webp" alt="Pasangan di dermaga malam berlampu hangat" loading="lazy"></div><figcaption class="gal-cap">Malam Lampu Dermaga</figcaption></figure></div>
+        <div class="gal-slide small rv rv-up" style="--rvd:0.00s"><span class="gal-num">LANTAI 5 · SELATAN</span><figure><div class="plain ph"><img class="gal-photo" src="assets/undangya/mercusuar-cinta/galeri-5.webp" alt="Pasangan di ayunan pantai berhias kamboja" loading="lazy"></div><figcaption class="gal-cap">Ayunan Pantai</figcaption></figure></div>
+        <div class="gal-slide small rv rv-rotr" style="--rvd:0.05s"><span class="gal-num">LANTAI 6 · BARAT DAYA</span><figure><div class="plain ph"><img class="gal-photo" src="assets/undangya/mercusuar-cinta/galeri-6.webp" alt="Pasangan di dekat perahu nelayan pada pagi hari" loading="lazy"></div><figcaption class="gal-cap">Perahu Nelayan Pagi</figcaption></figure></div>
+        <div class="gal-slide small rv rv-zoom" style="--rvd:0.10s"><span class="gal-num">LANTAI 7 · BARAT</span><figure><div class="plain ph"><img class="gal-photo" src="assets/undangya/mercusuar-cinta/galeri-7.webp" alt="Pasangan di karang dengan ombak menyembur" loading="lazy"></div><figcaption class="gal-cap">Karang &amp; Ombak</figcaption></figure></div>
+        <div class="gal-slide small rv rv-rotl" style="--rvd:0.15s"><span class="gal-num">LANTAI 8 · BARAT LAUT</span><figure><div class="plain ph"><img class="gal-photo" src="assets/undangya/mercusuar-cinta/galeri-8.webp" alt="Pasangan di dermaga malam berlampu hangat" loading="lazy"></div><figcaption class="gal-cap">Malam Lampu Dermaga</figcaption></figure></div>
       </div>
       <div class="rail-meta rv rv-up" style="--rvd:.15s"><span class="rail-frac" id="fracSub">1 / 4</span><span class="rail-dots" id="dotsSub"></span></div>
     </section>
 
     <!-- ================= CUPLIKAN / VIDEO TEASER ================= -->
     <section id="cuplikan">
+      <div class="wave-div" aria-hidden="true"><svg viewBox="0 0 430 38" preserveAspectRatio="none" aria-hidden="true"><path class="wv" style="--wd:13s" opacity="0.45" fill="#3d9bc4" d="M0 16 Q 54 9 108 16 Q 162 23 216 16 Q 270 9 324 16 Q 378 23 432 16 Q 486 9 540 16 Q 594 23 648 16 Q 702 9 756 16 Q 810 23 864 16 L860 38 L0 38 Z"/><path class="wv wv2" style="--wd:11s" opacity="0.65" fill="#14608f" d="M0 22 Q 54 14 108 22 Q 162 30 216 22 Q 270 14 324 22 Q 378 30 432 22 Q 486 14 540 22 Q 594 30 648 22 Q 702 14 756 22 Q 810 30 864 22 L860 38 L0 38 Z"/><path class="wv wv3" style="--wd:11s" opacity="0.95" fill="#0d2f4a" d="M0 28 Q 54 21 108 28 Q 162 35 216 28 Q 270 21 324 28 Q 378 35 432 28 Q 486 21 540 28 Q 594 35 648 28 Q 702 21 756 28 Q 810 35 864 28 L860 38 L0 38 Z"/></svg></div>
+      <div class="floor-plate rv rv-up"><span class="fp-num">VI</span><span class="fp-txt">LANTAI VI · DEK PENGAMAT — CUPLIKAN</span><span class="fp-rail" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span></div>
       <img class="sec-orn rv rv-rotl" src="assets/undangya/mercusuar-cinta/mercu-bintang-laut-coral.webp" alt="" aria-hidden="true" style="top:14px;left:12px;--rvd:.15s">
         <div class="sec-head rv rv-up">
           <svg class="sec-icon rv rv-drop" style="--rvd:.05s" viewBox="0 0 64 64" aria-hidden="true"><path d="M32 4 L36 14 L47 14 L38 21 L41 32 L32 25 L23 32 L26 21 L17 14 L28 14 Z" fill="#ffd98a" stroke="#c9862a" stroke-width="2"/><path d="M14 44 C22 40 42 40 50 44 M18 52 C25 48 39 48 46 52" fill="none" stroke="#14608f" stroke-width="2.6" stroke-linecap="round"/></svg>
@@ -472,6 +579,8 @@ section .sub-h{width:fit-content;margin-left:auto;margin-right:auto;background:r
 
     <!-- ================= LIVE + TAGAR + GALERI TAMU ================= -->
     <section id="live">
+      <div class="wave-div" aria-hidden="true"><svg viewBox="0 0 430 38" preserveAspectRatio="none" aria-hidden="true"><path class="wv" style="--wd:13s" opacity="0.45" fill="#3d9bc4" d="M0 16 Q 54 9 108 16 Q 162 23 216 16 Q 270 9 324 16 Q 378 23 432 16 Q 486 9 540 16 Q 594 23 648 16 Q 702 9 756 16 Q 810 23 864 16 L860 38 L0 38 Z"/><path class="wv wv2" style="--wd:11s" opacity="0.65" fill="#14608f" d="M0 22 Q 54 14 108 22 Q 162 30 216 22 Q 270 14 324 22 Q 378 30 432 22 Q 486 14 540 22 Q 594 30 648 22 Q 702 14 756 22 Q 810 30 864 22 L860 38 L0 38 Z"/><path class="wv wv3" style="--wd:11s" opacity="0.95" fill="#0d2f4a" d="M0 28 Q 54 21 108 28 Q 162 35 216 28 Q 270 21 324 28 Q 378 35 432 28 Q 486 21 540 28 Q 594 35 648 28 Q 702 21 756 28 Q 810 35 864 28 L860 38 L0 38 Z"/></svg></div>
+      <div class="floor-plate rv rv-up"><span class="fp-num">VII</span><span class="fp-txt">LANTAI VII · SINYAL SIARAN — LIVE</span><span class="fp-rail" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span></div>
       <img class="sec-orn orn-melayang rv rv-zoom" src="assets/undangya/mercusuar-cinta/mercu-pelampung.webp" alt="" aria-hidden="true" style="top:14px;right:12px;--sd:7s;--rvd:.15s">
         <div class="sec-head rv rv-up">
           <svg class="sec-icon rv rv-drop" style="--rvd:.05s" viewBox="0 0 64 64" aria-hidden="true"><path d="M12 30 C18 20 26 14 32 14 C38 14 46 20 52 30 C46 40 38 46 32 46 C26 46 18 40 12 30 Z" fill="none" stroke="#0d2f4a" stroke-width="2.4"/><circle cx="32" cy="30" r="7" fill="#c93a3a"/><path d="M20 54 C26 51 38 51 44 54" fill="none" stroke="#14608f" stroke-width="2.4" stroke-linecap="round"/></svg>
@@ -504,6 +613,8 @@ section .sub-h{width:fit-content;margin-left:auto;margin-right:auto;background:r
 
     <!-- ================= RSVP ================= -->
     <section id="rsvp">
+      <div class="wave-div" aria-hidden="true"><svg viewBox="0 0 430 38" preserveAspectRatio="none" aria-hidden="true"><path class="wv" style="--wd:13s" opacity="0.45" fill="#3d9bc4" d="M0 16 Q 54 9 108 16 Q 162 23 216 16 Q 270 9 324 16 Q 378 23 432 16 Q 486 9 540 16 Q 594 23 648 16 Q 702 9 756 16 Q 810 23 864 16 L860 38 L0 38 Z"/><path class="wv wv2" style="--wd:11s" opacity="0.65" fill="#14608f" d="M0 22 Q 54 14 108 22 Q 162 30 216 22 Q 270 14 324 22 Q 378 30 432 22 Q 486 14 540 22 Q 594 30 648 22 Q 702 14 756 22 Q 810 30 864 22 L860 38 L0 38 Z"/><path class="wv wv3" style="--wd:11s" opacity="0.95" fill="#0d2f4a" d="M0 28 Q 54 21 108 28 Q 162 35 216 28 Q 270 21 324 28 Q 378 35 432 28 Q 486 21 540 28 Q 594 35 648 28 Q 702 21 756 28 Q 810 35 864 28 L860 38 L0 38 Z"/></svg></div>
+      <div class="floor-plate rv rv-up"><span class="fp-num">VIII</span><span class="fp-txt">LANTAI VIII · BUKU LOG — RSVP</span><span class="fp-rail" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span></div>
       <img class="sec-orn orn-melayang rv rv-rotr" src="assets/undangya/mercusuar-cinta/mercu-botol-pesan.webp" alt="" aria-hidden="true" style="top:14px;left:10px;--sd:6.8s;--rvd:.15s">
         <div class="sec-head rv rv-up">
           <svg class="sec-icon rv rv-drop" style="--rvd:.05s" viewBox="0 0 64 64" aria-hidden="true"><path d="M14 18 C14 12 20 8 26 10 C34 12 36 20 32 26 C28 20 18 24 14 18 Z M50 18 C50 12 44 8 38 10 C30 12 28 20 32 26 C36 20 46 24 50 18 Z" fill="#fdf7ea" stroke="#0d2f4a" stroke-width="2"/><path d="M32 26 C30 34 32 42 38 48 M32 26 C34 34 32 42 26 48" fill="none" stroke="#14608f" stroke-width="2.2"/><circle cx="32" cy="52" r="3.4" fill="#ff8a70" stroke="#a52a2a" stroke-width="1.6"/></svg>
@@ -526,6 +637,8 @@ section .sub-h{width:fit-content;margin-left:auto;margin-right:auto;background:r
 
     <!-- ================= BUKU TAMU & QR ================= -->
     <section id="bukutamu">
+      <div class="wave-div" aria-hidden="true"><svg viewBox="0 0 430 38" preserveAspectRatio="none" aria-hidden="true"><path class="wv" style="--wd:13s" opacity="0.45" fill="#3d9bc4" d="M0 16 Q 54 9 108 16 Q 162 23 216 16 Q 270 9 324 16 Q 378 23 432 16 Q 486 9 540 16 Q 594 23 648 16 Q 702 9 756 16 Q 810 23 864 16 L860 38 L0 38 Z"/><path class="wv wv2" style="--wd:11s" opacity="0.65" fill="#14608f" d="M0 22 Q 54 14 108 22 Q 162 30 216 22 Q 270 14 324 22 Q 378 30 432 22 Q 486 14 540 22 Q 594 30 648 22 Q 702 14 756 22 Q 810 30 864 22 L860 38 L0 38 Z"/><path class="wv wv3" style="--wd:11s" opacity="0.95" fill="#0d2f4a" d="M0 28 Q 54 21 108 28 Q 162 35 216 28 Q 270 21 324 28 Q 378 35 432 28 Q 486 21 540 28 Q 594 35 648 28 Q 702 21 756 28 Q 810 35 864 28 L860 38 L0 38 Z"/></svg></div>
+      <div class="floor-plate rv rv-up"><span class="fp-num">IX</span><span class="fp-txt">LANTAI IX · POS PENJAGA — CHECK-IN</span><span class="fp-rail" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span></div>
       <img class="sec-orn orn-spin rv rv-zoom" src="assets/undangya/mercusuar-cinta/mercu-kompas-mawar.webp" alt="" aria-hidden="true" style="top:12px;right:12px;--rvd:.15s">
         <div class="sec-head rv rv-up">
           <svg class="sec-icon rv rv-drop" style="--rvd:.05s" viewBox="0 0 64 64" aria-hidden="true"><rect x="10" y="10" width="18" height="18" rx="3" fill="none" stroke="#0d2f4a" stroke-width="2.4"/><rect x="36" y="10" width="18" height="18" rx="3" fill="none" stroke="#0d2f4a" stroke-width="2.4"/><rect x="10" y="36" width="18" height="18" rx="3" fill="none" stroke="#0d2f4a" stroke-width="2.4"/><rect x="17" y="17" width="4" height="4" fill="#c93a3a"/><rect x="43" y="17" width="4" height="4" fill="#c93a3a"/><rect x="17" y="43" width="4" height="4" fill="#c93a3a"/><path d="M36 36 H44 V44 H36 Z M46 46 H54 V54 H46 Z" fill="#14608f"/></svg>
@@ -549,6 +662,8 @@ section .sub-h{width:fit-content;margin-left:auto;margin-right:auto;background:r
 
     <!-- ================= AMPLOP ================= -->
     <section id="amplop">
+      <div class="wave-div" aria-hidden="true"><svg viewBox="0 0 430 38" preserveAspectRatio="none" aria-hidden="true"><path class="wv" style="--wd:13s" opacity="0.45" fill="#3d9bc4" d="M0 16 Q 54 9 108 16 Q 162 23 216 16 Q 270 9 324 16 Q 378 23 432 16 Q 486 9 540 16 Q 594 23 648 16 Q 702 9 756 16 Q 810 23 864 16 L860 38 L0 38 Z"/><path class="wv wv2" style="--wd:11s" opacity="0.65" fill="#14608f" d="M0 22 Q 54 14 108 22 Q 162 30 216 22 Q 270 14 324 22 Q 378 30 432 22 Q 486 14 540 22 Q 594 30 648 22 Q 702 14 756 22 Q 810 30 864 22 L860 38 L0 38 Z"/><path class="wv wv3" style="--wd:11s" opacity="0.95" fill="#0d2f4a" d="M0 28 Q 54 21 108 28 Q 162 35 216 28 Q 270 21 324 28 Q 378 35 432 28 Q 486 21 540 28 Q 594 35 648 28 Q 702 21 756 28 Q 810 35 864 28 L860 38 L0 38 Z"/></svg></div>
+      <div class="floor-plate rv rv-up"><span class="fp-num">X</span><span class="fp-txt">LANTAI X · GUDANG TANDA KASIH — AMPLOP</span><span class="fp-rail" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span></div>
       <img class="sec-orn rv rv-zoom" src="assets/undangya/mercusuar-cinta/mercu-kerang-mutiara.webp" alt="" aria-hidden="true" style="top:14px;left:12px;--rvd:.15s">
       <div class="sec-head rv rv-up head-glass">
         <svg class="sec-icon rv rv-drop" style="--rvd:.05s" viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="16" width="48" height="34" rx="4" fill="#fdf7ea" stroke="#0d2f4a" stroke-width="2.4"/><path d="M9 18 L32 36 L55 18" fill="none" stroke="#c93a3a" stroke-width="2.4"/><path d="M32 30 C28 26 22 28 22 33 C22 38 28 40 32 44 C36 40 42 38 42 33 C42 28 36 26 32 30 Z" fill="#ff8a70"/></svg>
@@ -578,6 +693,8 @@ section .sub-h{width:fit-content;margin-left:auto;margin-right:auto;background:r
 
     <!-- ================= TURUT MENGUNDANG ================= -->
     <section id="turut">
+      <div class="wave-div" aria-hidden="true"><svg viewBox="0 0 430 38" preserveAspectRatio="none" aria-hidden="true"><path class="wv" style="--wd:13s" opacity="0.45" fill="#3d9bc4" d="M0 16 Q 54 9 108 16 Q 162 23 216 16 Q 270 9 324 16 Q 378 23 432 16 Q 486 9 540 16 Q 594 23 648 16 Q 702 9 756 16 Q 810 23 864 16 L860 38 L0 38 Z"/><path class="wv wv2" style="--wd:11s" opacity="0.65" fill="#14608f" d="M0 22 Q 54 14 108 22 Q 162 30 216 22 Q 270 14 324 22 Q 378 30 432 22 Q 486 14 540 22 Q 594 30 648 22 Q 702 14 756 22 Q 810 30 864 22 L860 38 L0 38 Z"/><path class="wv wv3" style="--wd:11s" opacity="0.95" fill="#0d2f4a" d="M0 28 Q 54 21 108 28 Q 162 35 216 28 Q 270 21 324 28 Q 378 35 432 28 Q 486 21 540 28 Q 594 35 648 28 Q 702 21 756 28 Q 810 35 864 28 L860 38 L0 38 Z"/></svg></div>
+      <div class="floor-plate rv rv-up"><span class="fp-num">XI</span><span class="fp-txt">LANTAI XI · GALERI KELUARGA — TURUT</span><span class="fp-rail" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span></div>
       <img class="sec-orn orn-melayang rv rv-up" src="assets/undangya/mercusuar-cinta/mercu-camar-pasangan.webp" alt="" aria-hidden="true" style="top:14px;right:12px;--sd:7.4s;--rvd:.15s">
         <div class="sec-head rv rv-up">
           <svg class="sec-icon rv rv-drop" style="--rvd:.05s" viewBox="0 0 64 64" aria-hidden="true"><circle cx="22" cy="22" r="8" fill="#bfe3f2" stroke="#0d2f4a" stroke-width="2.2"/><circle cx="43" cy="22" r="8" fill="#ffe1d6" stroke="#0d2f4a" stroke-width="2.2"/><path d="M8 52 C10 42 16 38 22 38 C28 38 34 42 36 52 M28 52 C30 42 36 38 43 38 C49 38 54 42 56 52" fill="none" stroke="#0d2f4a" stroke-width="2.4" stroke-linecap="round"/></svg>
@@ -600,6 +717,8 @@ section .sub-h{width:fit-content;margin-left:auto;margin-right:auto;background:r
 
     <!-- ================= PENUTUP ================= -->
     <section id="penutup" style="text-align:center">
+      <div class="wave-div" aria-hidden="true"><svg viewBox="0 0 430 38" preserveAspectRatio="none" aria-hidden="true"><path class="wv" style="--wd:13s" opacity="0.45" fill="#3d9bc4" d="M0 16 Q 54 9 108 16 Q 162 23 216 16 Q 270 9 324 16 Q 378 23 432 16 Q 486 9 540 16 Q 594 23 648 16 Q 702 9 756 16 Q 810 23 864 16 L860 38 L0 38 Z"/><path class="wv wv2" style="--wd:11s" opacity="0.65" fill="#14608f" d="M0 22 Q 54 14 108 22 Q 162 30 216 22 Q 270 14 324 22 Q 378 30 432 22 Q 486 14 540 22 Q 594 30 648 22 Q 702 14 756 22 Q 810 30 864 22 L860 38 L0 38 Z"/><path class="wv wv3" style="--wd:11s" opacity="0.95" fill="#0d2f4a" d="M0 28 Q 54 21 108 28 Q 162 35 216 28 Q 270 21 324 28 Q 378 35 432 28 Q 486 21 540 28 Q 594 35 648 28 Q 702 21 756 28 Q 810 35 864 28 L860 38 L0 38 Z"/></svg></div>
+      <div class="floor-plate rv rv-up"><span class="fp-num">XII</span><span class="fp-txt">LANTAI XII · PUNCAK LAMPU — PENUTUP</span><span class="fp-rail" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span></div>
       <img class="sec-orn rv rv-rotl" src="assets/undangya/mercusuar-cinta/mercu-kerang-spiral.webp" alt="" aria-hidden="true" style="top:16px;left:14px;--rvd:.15s">
       <div class="sec-petals" aria-hidden="true"></div>
       <div class="panel-glass" style="padding:30px 22px 26px;position:relative;z-index:2">
