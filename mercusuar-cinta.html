@@ -200,14 +200,57 @@ body.opened #btnMusic{display:flex}
 .turut-card{text-align:center}
 .turut-card h4{font-size:16.5px;margin-bottom:6px;color:var(--navy)}
 .turut-card p{font-size:13px;line-height:1.85}
-.rv{opacity:0}
-.rv.in{opacity:1;transition:opacity .9s ease,transform .9s cubic-bezier(.22,.8,.3,1)}
-.rv-up{transform:translateY(44px)}.rv-zoom{transform:scale(.86)}
-.rv-left{transform:translateX(-46px)}.rv-right{transform:translateX(46px)}
-.rv.in.rv-up,.rv.in.rv-zoom,.rv.in.rv-left,.rv.in.rv-right{transform:none}
+/* ===== REVEAL BERVARIASI (pass amendemen) — murni transform/opacity, pemicu IntersectionObserver ===== */
+.rv{opacity:0;--rvd:0s}
+.rv.in{opacity:1;transform:none;transition:opacity .85s ease var(--rvd,0s),transform .95s cubic-bezier(.22,.8,.3,1) var(--rvd,0s)}
+.rv-up{transform:translateY(44px)}
+.rv-down{transform:translateY(-36px)}
+.rv-left{transform:translateX(-46px)}
+.rv-right{transform:translateX(46px)}
+.rv-zoom{transform:scale(.86)}
+.rv-pop{transform:translateY(18px) scale(.7)}
+.rv-rotl{transform:rotate(-5deg) translateY(22px) scale(.94)}
+.rv-rotr{transform:rotate(5deg) translateY(22px) scale(.94)}
+.rv-drop{transform:translateY(-54px) scale(.96)}
+.rv-wide{transform:scaleX(.8) scaleY(.94)}
+.sec-kicker.rv.in{animation:kickIn 1s cubic-bezier(.22,.8,.3,1) var(--rvd,0s) both}
+@keyframes kickIn{from{letter-spacing:.62em}to{letter-spacing:.4em}}
+.gal-slide.in .gal-num{animation:badgePop .55s cubic-bezier(.22,.8,.3,1) .3s both}
+@keyframes badgePop{from{transform:scale(.4) rotate(-8deg);opacity:0}to{transform:scale(1) rotate(0);opacity:1}}
+.gal-slide.in .gal-cap{animation:capIn .7s ease .35s both}
+@keyframes capIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.gb-item{animation:itemIn .55s cubic-bezier(.22,.8,.3,1) both}
+.gb-list .gb-item:nth-child(2){animation-delay:.08s}.gb-list .gb-item:nth-child(3){animation-delay:.16s}
+.gt-item{animation:itemIn .55s cubic-bezier(.22,.8,.3,1) both}
+@keyframes itemIn{from{opacity:0;transform:translateY(16px) scale(.96)}to{opacity:1;transform:none}}
+/* ===== ORNAMEN PER-SECTION (pass amendemen) — anchor patuh kelas gerak ===== */
+.sec-orn{position:absolute;width:56px;height:56px;z-index:3;pointer-events:none;filter:drop-shadow(0 5px 10px rgba(13,47,74,.35))}
+.orn-gantung{transform-origin:50% 0;animation:swayG var(--sd,8.6s) ease-in-out infinite alternate}
+.orn-tegak{transform-origin:50% 100%;animation:swayT var(--sd,9s) ease-in-out infinite alternate}
+.orn-melayang{animation:floaty var(--sd,6.4s) ease-in-out infinite alternate}
+.orn-spin{animation:spinSlow 26s linear infinite}
+@keyframes floaty{from{transform:translateY(0) rotate(-2.4deg)}to{transform:translateY(-10px) rotate(2.4deg)}}
+@keyframes spinSlow{to{transform:rotate(360deg)}}
+/* ===== KONTRAS MUTLAK (pass amendemen): panel kaca untuk teks di atas lukisan dunia ===== */
+.sec-head{background:linear-gradient(180deg,rgba(253,247,234,.93),rgba(247,236,214,.9));border:1px solid var(--line);border-radius:20px;padding:20px 14px 16px;box-shadow:0 12px 26px rgba(13,47,74,.22)}
+.sec-sub{color:#2c5878;font-weight:600}
+.demo-note{color:#2c4f68;background:rgba(253,247,234,.94);border:1px solid var(--line);border-radius:10px;padding:7px 12px}
+.card .demo-note,.panel-glass .demo-note{background:rgba(255,253,246,.7)}
+.gal-hint{display:block;width:fit-content;margin:-8px auto 12px;background:rgba(253,247,234,.94);border:1px solid var(--line);border-radius:999px;padding:5px 14px}
+.rail-label{width:fit-content;background:rgba(253,247,234,.94);border:1px solid var(--line);border-radius:999px;padding:4px 12px}
+.rail-frac{background:rgba(253,247,234,.94);border:1px solid var(--line);border-radius:999px;padding:4px 11px;color:#2c4f68}
+.gal-cap{display:block;width:fit-content;margin:10px auto 0;background:rgba(253,247,234,.92);border:1px solid var(--line);border-radius:999px;padding:4px 14px}
+section .sub-h{width:fit-content;margin-left:auto;margin-right:auto;background:rgba(253,247,234,.9);border:1px solid var(--line);border-radius:999px;padding:5px 18px}
+.card .sub-h,.panel-glass .sub-h{background:transparent;border:none;padding:5px 0;width:auto}
+.sub-sub{width:fit-content;margin-left:auto;margin-right:auto;background:rgba(253,247,234,.88);border-radius:999px;padding:3px 14px;color:#2c5878}
+.card .sub-sub{background:transparent;width:auto}
+.foot-note{background:rgba(10,36,56,.82);border:1px solid rgba(255,217,168,.4);border-radius:16px;padding:14px 18px;margin:0 26px 110px}
 @media (prefers-reduced-motion: reduce){
-  *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important}
-  .rv{opacity:1;transform:none}
+  *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;animation-delay:0s !important;transition-duration:.01ms !important;transition-delay:0s !important}
+  html{scroll-behavior:auto}
+  .rv{opacity:1 !important;transform:none !important}
+  .gb-item,.gt-item,.gal-slide .gal-num,.gal-slide .gal-cap{animation:none !important;opacity:1 !important;transform:none !important}
+  .sec-orn,.beam,.gull,.petal,.flw,.lamp-halo,.live-dot,#btnMusic svg,.scene,.lyr-coverbg{animation:none !important}
 }
 </style>
 </head>
@@ -229,6 +272,7 @@ body.opened #btnMusic{display:flex}
       <div class="petal-field" id="petalCover" aria-hidden="true"></div>
       <div class="cover-shade"></div>
     </div>
+    <img class="sec-orn orn-gantung" src="assets/undangya/mercusuar-cinta/mercu-jangkar-rantai.webp" alt="" aria-hidden="true" style="top:8px;right:10px;width:46px;height:46px;--sd:8s;z-index:9">
     <div class="cover-ui">
       <div class="cover-kicker">THE WEDDING OF</div>
       <h1 class="cover-names"><span class="nm-line">Meyzsa</span><span class="amp">&amp;</span><span class="nm-line">Fahrezzi</span></h1>
@@ -245,175 +289,181 @@ body.opened #btnMusic{display:flex}
 
     <!-- ================= PEMBUKA ================= -->
     <section id="sambutan">
+      <img class="sec-orn orn-gantung rv rv-drop" src="assets/undangya/mercusuar-cinta/mercu-tali-simpul-hati.webp" alt="" aria-hidden="true" style="top:12px;right:12px;--sd:8.4s;--rvd:.15s">
         <div class="sec-head rv rv-up">
-          <svg class="sec-icon" viewBox="0 0 64 64" aria-hidden="true"><path d="M26 56 L29 22 H35 L38 56 Z" fill="#fdf7ea" stroke="#0d2f4a" stroke-width="2"/><path d="M27.6 34 H36.4 M26.8 44 H37.2" stroke="#c93a3a" stroke-width="5"/><path d="M28 22 H36 L34 15 H30 Z" fill="#0d2f4a"/><circle cx="32" cy="11" r="4" fill="#ffd98a" stroke="#0d2f4a" stroke-width="1.6"/><path d="M14 56 H50" stroke="#0d2f4a" stroke-width="2.4" stroke-linecap="round"/><path d="M18 12 L26 17 M46 12 L38 17" stroke="#e9b558" stroke-width="2.4" stroke-linecap="round"/></svg>
-          <div class="sec-kicker">DENGAN MEMOHON RAHMAT ALLAH SWT</div>
-          <h2 class="sec-title serif">Selamat Datang di Pantai Kami</h2>
-          <svg class="divider" viewBox="0 0 130 14" aria-hidden="true"><path d="M2 7 H46 M84 7 H128" stroke="#14608f" stroke-width="1.4"/><path d="M65 2 C59 7 59 7 65 12 C71 7 71 7 65 2 Z" fill="none" stroke="#c93a3a" stroke-width="1.5"/><circle cx="65" cy="7" r="1.6" fill="#ff8a70"/></svg>
+          <svg class="sec-icon rv rv-drop" style="--rvd:.05s" viewBox="0 0 64 64" aria-hidden="true"><path d="M26 56 L29 22 H35 L38 56 Z" fill="#fdf7ea" stroke="#0d2f4a" stroke-width="2"/><path d="M27.6 34 H36.4 M26.8 44 H37.2" stroke="#c93a3a" stroke-width="5"/><path d="M28 22 H36 L34 15 H30 Z" fill="#0d2f4a"/><circle cx="32" cy="11" r="4" fill="#ffd98a" stroke="#0d2f4a" stroke-width="1.6"/><path d="M14 56 H50" stroke="#0d2f4a" stroke-width="2.4" stroke-linecap="round"/><path d="M18 12 L26 17 M46 12 L38 17" stroke="#e9b558" stroke-width="2.4" stroke-linecap="round"/></svg>
+          <div class="sec-kicker rv rv-down" style="--rvd:.12s">DENGAN MEMOHON RAHMAT ALLAH SWT</div>
+          <h2 class="sec-title serif rv rv-up" style="--rvd:.2s">Selamat Datang di Pantai Kami</h2>
+          <svg class="divider rv rv-wide" style="--rvd:.34s" viewBox="0 0 130 14" aria-hidden="true"><path d="M2 7 H46 M84 7 H128" stroke="#14608f" stroke-width="1.4"/><path d="M65 2 C59 7 59 7 65 12 C71 7 71 7 65 2 Z" fill="none" stroke="#c93a3a" stroke-width="1.5"/><circle cx="65" cy="7" r="1.6" fill="#ff8a70"/></svg>
         </div>
         <div class="card rv rv-zoom" style="text-align:center">
-          <p style="font-size:18px;line-height:1.75;font-style:italic">“Dan di antara tanda-tanda kebesaran-Nya ialah Dia menciptakan pasangan-pasangan untukmu agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang.”</p>
-          <p style="margin-top:12px;font-size:12px;letter-spacing:.24em;color:var(--red-d);font-weight:700">QS. AR-RUM : 21</p>
-          <p style="margin-top:16px;font-size:14px;line-height:1.75">Seperti cahaya mercusuar yang setia menuntun kapal pulang, dua hati ini akhirnya menemukan pelabuhannya. Dengan penuh syukur, kami mengundang Bapak/Ibu/Saudara/i untuk hadir dan memberi doa restu pada hari bahagia kami.</p>
+          <p class="rv rv-up" style="--rvd:.1s;font-size:18px;line-height:1.75;font-style:italic">“Dan di antara tanda-tanda kebesaran-Nya ialah Dia menciptakan pasangan-pasangan untukmu agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang.”</p>
+          <p class="rv rv-pop" style="--rvd:.22s;margin-top:12px;font-size:12px;letter-spacing:.24em;color:var(--red-d);font-weight:700">QS. AR-RUM : 21</p>
+          <p class="rv rv-up" style="--rvd:.32s;margin-top:16px;font-size:14px;line-height:1.75">Seperti cahaya mercusuar yang setia menuntun kapal pulang, dua hati ini akhirnya menemukan pelabuhannya. Dengan penuh syukur, kami mengundang Bapak/Ibu/Saudara/i untuk hadir dan memberi doa restu pada hari bahagia kami.</p>
         </div>
     </section>
 
     <!-- ================= MEMPELAI ================= -->
     <section id="mempelai">
+      <img class="sec-orn orn-spin rv rv-zoom" src="assets/undangya/mercusuar-cinta/mercu-kemudi-kapal.webp" alt="" aria-hidden="true" style="top:12px;left:12px;--rvd:.15s">
       <div class="sec-petals" aria-hidden="true"></div>
       <div class="sec-head rv rv-up">
-        <svg class="sec-icon" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="30" r="20" fill="none" stroke="#0d2f4a" stroke-width="2.6"/><circle cx="32" cy="30" r="5" fill="#c93a3a"/><path d="M32 10 V25 M32 35 V50 M12 30 H27 M37 30 H52" stroke="#0d2f4a" stroke-width="2.6"/><path d="M18 16 L28 26 M46 16 L36 26 M18 44 L28 34 M46 44 L36 34" stroke="#14608f" stroke-width="2.2"/><path d="M32 2 V8 M32 52 V58" stroke="#e9b558" stroke-width="3" stroke-linecap="round"/></svg>
-        <div class="sec-kicker">MEMPELAI</div>
-        <h2 class="sec-title serif">Pengantin Putri &amp; Putra</h2>
-        <p class="sec-sub">Dua sejoli berbahagia dalam busana pantai yang elegan</p>
+        <svg class="sec-icon rv rv-drop" style="--rvd:.05s" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="30" r="20" fill="none" stroke="#0d2f4a" stroke-width="2.6"/><circle cx="32" cy="30" r="5" fill="#c93a3a"/><path d="M32 10 V25 M32 35 V50 M12 30 H27 M37 30 H52" stroke="#0d2f4a" stroke-width="2.6"/><path d="M18 16 L28 26 M46 16 L36 26 M18 44 L28 34 M46 44 L36 34" stroke="#14608f" stroke-width="2.2"/><path d="M32 2 V8 M32 52 V58" stroke="#e9b558" stroke-width="3" stroke-linecap="round"/></svg>
+        <div class="sec-kicker rv rv-down" style="--rvd:.12s">MEMPELAI</div>
+        <h2 class="sec-title serif rv rv-up" style="--rvd:.2s">Pengantin Putri &amp; Putra</h2>
+        <p class="sec-sub rv rv-up" style="--rvd:.3s">Dua sejoli berbahagia dalam busana pantai yang elegan</p>
       </div>
       <div class="couple-grid">
         <div class="person rv rv-left">
           <div class="frame-pier"><img src="assets/undangya/mercusuar-cinta/bride.webp" alt="Mempelai wanita, Meyzsa Putri Ananda, bergaun pantai putih-krem dan hijab krem memegang buket kamboja di tepi pantai"></div>
-          <h3>Meyzsa Putri Ananda</h3>
-          <div class="gelar">Meyzsa Putri Ananda, S.Pd.</div>
-          <p>Putri dari<br><b>Bapak H. Muhammad Ridwan</b><br>&amp; <b>Ibu Hj. Siti Aminah</b></p>
-          <a class="ig-btn" href="https://instagram.com/meyzsa.contoh" target="_blank" rel="noopener">@meyzsa.contoh</a>
+          <h3 class="rv rv-up" style="--rvd:.24s">Meyzsa Putri Ananda</h3>
+          <div class="gelar rv rv-up" style="--rvd:.34s">Meyzsa Putri Ananda, S.Pd.</div>
+          <p class="rv rv-up" style="--rvd:.42s">Putri dari<br><b>Bapak H. Muhammad Ridwan</b><br>&amp; <b>Ibu Hj. Siti Aminah</b></p>
+          <a class="ig-btn rv rv-pop" style="--rvd:.5s" href="https://instagram.com/meyzsa.contoh" target="_blank" rel="noopener">@meyzsa.contoh</a>
         </div>
         <div class="person rv rv-right">
           <div class="frame-pier"><img src="assets/undangya/mercusuar-cinta/groom.webp" alt="Mempelai pria, Ahmad Fahrezzi Pratama, berkemeja linen putih dan jas biru laut di dermaga kayu"></div>
-          <h3>Ahmad Fahrezzi Pratama</h3>
-          <div class="gelar">Ahmad Fahrezzi Pratama, S.T.</div>
-          <p>Putra dari<br><b>Bapak H. Bambang Sutrisno</b><br>&amp; <b>Ibu Hj. Ratna Dewi</b></p>
-          <a class="ig-btn" href="https://instagram.com/fahrezzi.contoh" target="_blank" rel="noopener">@fahrezzi.contoh</a>
+          <h3 class="rv rv-up" style="--rvd:.24s">Ahmad Fahrezzi Pratama</h3>
+          <div class="gelar rv rv-up" style="--rvd:.34s">Ahmad Fahrezzi Pratama, S.T.</div>
+          <p class="rv rv-up" style="--rvd:.42s">Putra dari<br><b>Bapak H. Bambang Sutrisno</b><br>&amp; <b>Ibu Hj. Ratna Dewi</b></p>
+          <a class="ig-btn rv rv-pop" style="--rvd:.5s" href="https://instagram.com/fahrezzi.contoh" target="_blank" rel="noopener">@fahrezzi.contoh</a>
         </div>
       </div>
       <div class="rv rv-zoom panel-glass" style="margin-top:36px;padding:20px 18px 14px">
         <div class="frame-pier" style="height:320px"><img src="assets/undangya/mercusuar-cinta/hero.webp" alt="Meyzsa dan Fahrezzi berdiri bersama di dermaga kayu dengan mercusuar merah-putih di belakang"></div>
-        <p class="gal-cap">Di dermaga kayu, di bawah cahaya mercusuar kami.</p>
+        <p class="gal-cap rv rv-up" style="--rvd:.3s">Di dermaga kayu, di bawah cahaya mercusuar kami.</p>
       </div>
     </section>
 
     <!-- ================= LOVE STORY ================= -->
     <section id="kisah">
+      <img class="sec-orn orn-melayang rv rv-rotr" src="assets/undangya/mercusuar-cinta/mercu-perahu-layar-mini.webp" alt="" aria-hidden="true" style="top:14px;right:10px;--sd:6.2s;--rvd:.15s">
         <div class="sec-head rv rv-up">
-          <svg class="sec-icon" viewBox="0 0 64 64" aria-hidden="true"><path d="M32 54 C14 40 8 28 12 18 C16 8 28 8 32 18 C36 8 48 8 52 18 C56 28 50 40 32 54 Z" fill="#ff8a70" stroke="#a52a2a" stroke-width="2"/><path d="M20 22 C24 16 30 15 32 20" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/></svg>
-          <div class="sec-kicker">LOVE STORY</div>
-          <h2 class="sec-title serif">Kisah Mercusuar Cinta</h2>
-          <p class="sec-sub">Perjalanan kisah kami, dari perjumpaan pertama hingga hari bahagia</p>
+          <svg class="sec-icon rv rv-drop" style="--rvd:.05s" viewBox="0 0 64 64" aria-hidden="true"><path d="M32 54 C14 40 8 28 12 18 C16 8 28 8 32 18 C36 8 48 8 52 18 C56 28 50 40 32 54 Z" fill="#ff8a70" stroke="#a52a2a" stroke-width="2"/><path d="M20 22 C24 16 30 15 32 20" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/></svg>
+          <div class="sec-kicker rv rv-down" style="--rvd:.12s">LOVE STORY</div>
+          <h2 class="sec-title serif rv rv-up" style="--rvd:.2s">Kisah Mercusuar Cinta</h2>
+          <p class="sec-sub rv rv-up" style="--rvd:.3s">Perjalanan kisah kami, dari perjumpaan pertama hingga hari bahagia</p>
         </div>
         <div class="tl">
           <div class="tl-item rv rv-left"><span class="tl-dot" aria-hidden="true"></span><div class="tl-card">
-              <img class="tl-thumb" src="assets/undangya/mercusuar-cinta/galeri-6.webp" alt="Pasangan di pagi hari dekat perahu nelayan" loading="lazy" decoding="async">
-              <div class="tl-year">2019</div><div class="tl-title">Pertama Bertemu</div>
-              <p>Berawal dari pertemuan sederhana di kampus — obrolan sore itu menjadi sinyal pertama, seperti kedip awal cahaya mercusuar di kejauhan.</p></div></div>
+              <img class="tl-thumb rv rv-zoom" style="--rvd:.14s" src="assets/undangya/mercusuar-cinta/galeri-6.webp" alt="Pasangan di pagi hari dekat perahu nelayan" loading="lazy" decoding="async">
+              <div class="tl-year rv rv-pop" style="--rvd:.22s">2019</div><div class="tl-title rv rv-up" style="--rvd:.3s">Pertama Bertemu</div>
+              <p class="rv rv-up" style="--rvd:.38s">Berawal dari pertemuan sederhana di kampus — obrolan sore itu menjadi sinyal pertama, seperti kedip awal cahaya mercusuar di kejauhan.</p></div></div>
           <div class="tl-item rv rv-right"><span class="tl-dot" aria-hidden="true"></span><div class="tl-card">
-              <img class="tl-thumb" src="assets/undangya/mercusuar-cinta/galeri-2.webp" alt="Pasangan di samping perahu layar" loading="lazy" decoding="async">
-              <div class="tl-year">2023</div><div class="tl-title">Lamaran</div>
-              <p>Di hadapan keluarga tercinta, Fahrezzi menyampaikan niat sucinya. Dengan restu kedua orang tua, Meyzsa menerimanya dengan hati berbunga-bunga.</p></div></div>
+              <img class="tl-thumb rv rv-zoom" style="--rvd:.14s" src="assets/undangya/mercusuar-cinta/galeri-2.webp" alt="Pasangan di samping perahu layar" loading="lazy" decoding="async">
+              <div class="tl-year rv rv-pop" style="--rvd:.22s">2023</div><div class="tl-title rv rv-up" style="--rvd:.3s">Lamaran</div>
+              <p class="rv rv-up" style="--rvd:.38s">Di hadapan keluarga tercinta, Fahrezzi menyampaikan niat sucinya. Dengan restu kedua orang tua, Meyzsa menerimanya dengan hati berbunga-bunga.</p></div></div>
           <div class="tl-item rv rv-left"><span class="tl-dot" aria-hidden="true"></span><div class="tl-card">
-              <img class="tl-thumb" src="assets/undangya/mercusuar-cinta/galeri-4.webp" alt="Pasangan di pasir senja" loading="lazy" decoding="async">
-              <div class="tl-year">2025</div><div class="tl-title">Menyatukan Dua Keluarga</div>
-              <p>Persiapan demi persiapan kami jalani bersama — dua keluarga saling mengenal, menyatukan cerita dan doa, hingga hari bahagia terasa kian dekat.</p></div></div>
+              <img class="tl-thumb rv rv-zoom" style="--rvd:.14s" src="assets/undangya/mercusuar-cinta/galeri-4.webp" alt="Pasangan di pasir senja" loading="lazy" decoding="async">
+              <div class="tl-year rv rv-pop" style="--rvd:.22s">2025</div><div class="tl-title rv rv-up" style="--rvd:.3s">Menyatukan Dua Keluarga</div>
+              <p class="rv rv-up" style="--rvd:.38s">Persiapan demi persiapan kami jalani bersama — dua keluarga saling mengenal, menyatukan cerita dan doa, hingga hari bahagia terasa kian dekat.</p></div></div>
           <div class="tl-item rv rv-right"><span class="tl-dot" aria-hidden="true"></span><div class="tl-card">
-              <img class="tl-thumb" src="assets/undangya/mercusuar-cinta/hero.webp" alt="Pasangan di hari bahagia" loading="lazy" decoding="async">
-              <div class="tl-year">2027</div><div class="tl-title">Hari Bahagia</div>
-              <p>Sabtu, 12 Juni 2027 — kapal kami berlabuh di pelabuhan terindah. Kami mohon doa restu agar langkah ini diberkahi hingga selamanya.</p></div></div>
+              <img class="tl-thumb rv rv-zoom" style="--rvd:.14s" src="assets/undangya/mercusuar-cinta/hero.webp" alt="Pasangan di hari bahagia" loading="lazy" decoding="async">
+              <div class="tl-year rv rv-pop" style="--rvd:.22s">2027</div><div class="tl-title rv rv-up" style="--rvd:.3s">Hari Bahagia</div>
+              <p class="rv rv-up" style="--rvd:.38s">Sabtu, 12 Juni 2027 — kapal kami berlabuh di pelabuhan terindah. Kami mohon doa restu agar langkah ini diberkahi hingga selamanya.</p></div></div>
         </div>
         <p class="demo-note rv rv-up">Linimasa &amp; teks kisah di atas adalah contoh untuk tampilan tema.</p>
     </section>
 
     <!-- ================= COUNTDOWN + ACARA ================= -->
     <section id="acara">
+      <img class="sec-orn orn-tegak rv rv-up" src="assets/undangya/mercusuar-cinta/mercu-mercusuar-mini-biru.webp" alt="" aria-hidden="true" style="top:12px;left:10px;--sd:9s;--rvd:.15s">
         <div class="sec-head rv rv-up head-glass">
-          <svg class="sec-icon" viewBox="0 0 64 64" aria-hidden="true"><path d="M32 6 V14 M32 50 V58 M10 22 L16 27 M54 22 L48 27" stroke="#0d2f4a" stroke-width="2.6" stroke-linecap="round"/><path d="M32 16 C24 24 20 30 20 38 a12 12 0 0 0 24 0 C44 30 40 24 32 16 Z" fill="#fdf7ea" stroke="#0d2f4a" stroke-width="2.2"/><path d="M25 38 a7 7 0 0 0 14 0" fill="none" stroke="#c93a3a" stroke-width="4"/><path d="M32 58 V44" stroke="#0d2f4a" stroke-width="2.6"/><path d="M22 58 L32 50 L42 58" fill="none" stroke="#0d2f4a" stroke-width="2.6" stroke-linecap="round"/></svg>
-          <div class="sec-kicker">HITUNG MUNDUR</div>
-          <h2 class="sec-title serif">Menuju Hari Bahagia</h2>
+          <svg class="sec-icon rv rv-drop" style="--rvd:.05s" viewBox="0 0 64 64" aria-hidden="true"><path d="M32 6 V14 M32 50 V58 M10 22 L16 27 M54 22 L48 27" stroke="#0d2f4a" stroke-width="2.6" stroke-linecap="round"/><path d="M32 16 C24 24 20 30 20 38 a12 12 0 0 0 24 0 C44 30 40 24 32 16 Z" fill="#fdf7ea" stroke="#0d2f4a" stroke-width="2.2"/><path d="M25 38 a7 7 0 0 0 14 0" fill="none" stroke="#c93a3a" stroke-width="4"/><path d="M32 58 V44" stroke="#0d2f4a" stroke-width="2.6"/><path d="M22 58 L32 50 L42 58" fill="none" stroke="#0d2f4a" stroke-width="2.6" stroke-linecap="round"/></svg>
+          <div class="sec-kicker rv rv-down" style="--rvd:.12s">HITUNG MUNDUR</div>
+          <h2 class="sec-title serif rv rv-up" style="--rvd:.2s">Menuju Hari Bahagia</h2>
         </div>
         <div class="countdown rv rv-zoom" id="countdown" data-target="2027-06-12T08:00:00+07:00" aria-label="Hitung mundur menuju akad nikah">
-          <div class="cd-box"><b id="cdD">0</b><span>Hari</span></div>
-          <div class="cd-box"><b id="cdH">0</b><span>Jam</span></div>
-          <div class="cd-box"><b id="cdM">0</b><span>Menit</span></div>
-          <div class="cd-box"><b id="cdS">0</b><span>Detik</span></div>
+          <div class="cd-box rv rv-pop" style="--rvd:.05s"><b id="cdD">0</b><span>Hari</span></div>
+          <div class="cd-box rv rv-pop" style="--rvd:.15s"><b id="cdH">0</b><span>Jam</span></div>
+          <div class="cd-box rv rv-pop" style="--rvd:.25s"><b id="cdM">0</b><span>Menit</span></div>
+          <div class="cd-box rv rv-pop" style="--rvd:.35s"><b id="cdS">0</b><span>Detik</span></div>
         </div>
         <p class="demo-note rv rv-up" style="margin:0 auto 26px;max-width:280px;background:rgba(253,247,234,.9);border:1px solid var(--line);border-radius:10px;padding:6px 10px">Sabtu, 12 Juni 2027 — Jakarta</p>
 
         <div class="card event rv rv-left">
-          <svg class="sec-icon" viewBox="0 0 64 64" aria-hidden="true"><path d="M26 56 L29 22 H35 L38 56 Z" fill="#fdf7ea" stroke="#0d2f4a" stroke-width="2"/><path d="M27.6 34 H36.4 M26.8 44 H37.2" stroke="#c93a3a" stroke-width="5"/><path d="M28 22 H36 L34 15 H30 Z" fill="#0d2f4a"/><circle cx="32" cy="11" r="4" fill="#ffd98a" stroke="#0d2f4a" stroke-width="1.6"/></svg>
-          <h3>Akad Nikah</h3>
-          <div class="when">Sabtu, 12 Juni 2027 · 08.00 – 10.00 WIB</div>
-          <p><b>Masjid Agung Al-Azhar</b><br>Jakarta Selatan</p>
-          <a class="btn" href="https://maps.google.com/?q=Masjid+Agung+Al-Azhar+Jakarta+Selatan" target="_blank" rel="noopener">LIHAT LOKASI</a>
-          <a class="btn btn-alt" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Akad+Nikah+Meyzsa+%26+Fahrezzi&amp;dates=20270612T010000Z%2F20270612T030000Z&amp;details=Akad+Nikah+Meyzsa+Putri+Ananda+%26+Ahmad+Fahrezzi+Pratama&amp;location=Masjid+Agung+Al-Azhar%2C+Kebayoran+Baru%2C+Jakarta+Selatan" target="_blank" rel="noopener">SIMPAN KE KALENDER</a>
-          <button class="btn btn-alt" type="button" data-ics data-file="akad-meyzsa-fahrezzi" data-title="Akad Nikah Meyzsa &amp; Fahrezzi" data-start="20270612T010000Z" data-end="20270612T030000Z" data-loc="Masjid Agung Al-Azhar, Kebayoran Baru, Jakarta Selatan" data-desc="Akad Nikah Meyzsa Putri Ananda &amp; Ahmad Fahrezzi Pratama">UNDUH .ICS</button>
+          <svg class="sec-icon rv rv-drop" style="--rvd:.05s" viewBox="0 0 64 64" aria-hidden="true"><path d="M26 56 L29 22 H35 L38 56 Z" fill="#fdf7ea" stroke="#0d2f4a" stroke-width="2"/><path d="M27.6 34 H36.4 M26.8 44 H37.2" stroke="#c93a3a" stroke-width="5"/><path d="M28 22 H36 L34 15 H30 Z" fill="#0d2f4a"/><circle cx="32" cy="11" r="4" fill="#ffd98a" stroke="#0d2f4a" stroke-width="1.6"/></svg>
+          <h3 class="rv rv-up" style="--rvd:.16s">Akad Nikah</h3>
+          <div class="when rv rv-up" style="--rvd:.24s">Sabtu, 12 Juni 2027 · 08.00 – 10.00 WIB</div>
+          <p class="rv rv-up" style="--rvd:.32s"><b>Masjid Agung Al-Azhar</b><br>Jakarta Selatan</p>
+          <a class="btn rv rv-pop" style="--rvd:.4s" href="https://maps.google.com/?q=Masjid+Agung+Al-Azhar+Jakarta+Selatan" target="_blank" rel="noopener">LIHAT LOKASI</a>
+          <a class="btn btn-alt rv rv-pop" style="--rvd:.4s" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Akad+Nikah+Meyzsa+%26+Fahrezzi&amp;dates=20270612T010000Z%2F20270612T030000Z&amp;details=Akad+Nikah+Meyzsa+Putri+Ananda+%26+Ahmad+Fahrezzi+Pratama&amp;location=Masjid+Agung+Al-Azhar%2C+Kebayoran+Baru%2C+Jakarta+Selatan" target="_blank" rel="noopener">SIMPAN KE KALENDER</a>
+          <button class="btn btn-alt rv rv-pop" style="--rvd:.48s" type="button" data-ics data-file="akad-meyzsa-fahrezzi" data-title="Akad Nikah Meyzsa &amp; Fahrezzi" data-start="20270612T010000Z" data-end="20270612T030000Z" data-loc="Masjid Agung Al-Azhar, Kebayoran Baru, Jakarta Selatan" data-desc="Akad Nikah Meyzsa Putri Ananda &amp; Ahmad Fahrezzi Pratama">UNDUH .ICS</button>
         </div>
         <div class="card event rv rv-right">
-          <svg class="sec-icon" viewBox="0 0 64 64" aria-hidden="true"><path d="M34 8 L34 44 L14 44 Z" fill="#fdf7ea" stroke="#0d2f4a" stroke-width="2.2"/><path d="M38 20 L38 44 L50 44 Z" fill="#bfe3f2" stroke="#0d2f4a" stroke-width="2.2"/><path d="M10 48 H54 L48 56 H16 Z" fill="#c93a3a" stroke="#a52a2a" stroke-width="2"/><path d="M32 8 V48" stroke="#0d2f4a" stroke-width="2.2"/></svg>
-          <h3>Resepsi</h3>
-          <div class="when">Sabtu, 12 Juni 2027 · 11.00 – 13.00 WIB</div>
-          <p><b>The Ritz-Carlton Jakarta, Pacific Place</b><br>Jakarta Selatan</p>
-          <a class="btn" href="https://maps.google.com/?q=The+Ritz-Carlton+Jakarta+Pacific+Place" target="_blank" rel="noopener">LIHAT LOKASI</a>
-          <a class="btn btn-alt" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Resepsi+Meyzsa+%26+Fahrezzi&amp;dates=20270612T040000Z%2F20270612T060000Z&amp;details=Resepsi+Pernikahan+Meyzsa+Putri+Ananda+%26+Ahmad+Fahrezzi+Pratama&amp;location=The+Ritz-Carlton+Jakarta%2C+Pacific+Place%2C+Jakarta+Selatan" target="_blank" rel="noopener">SIMPAN KE KALENDER</a>
-          <button class="btn btn-alt" type="button" data-ics data-file="resepsi-meyzsa-fahrezzi" data-title="Resepsi Meyzsa &amp; Fahrezzi" data-start="20270612T040000Z" data-end="20270612T060000Z" data-loc="The Ritz-Carlton Jakarta, Pacific Place, Jakarta Selatan" data-desc="Resepsi Pernikahan Meyzsa Putri Ananda &amp; Ahmad Fahrezzi Pratama">UNDUH .ICS</button>
+          <svg class="sec-icon rv rv-drop" style="--rvd:.05s" viewBox="0 0 64 64" aria-hidden="true"><path d="M34 8 L34 44 L14 44 Z" fill="#fdf7ea" stroke="#0d2f4a" stroke-width="2.2"/><path d="M38 20 L38 44 L50 44 Z" fill="#bfe3f2" stroke="#0d2f4a" stroke-width="2.2"/><path d="M10 48 H54 L48 56 H16 Z" fill="#c93a3a" stroke="#a52a2a" stroke-width="2"/><path d="M32 8 V48" stroke="#0d2f4a" stroke-width="2.2"/></svg>
+          <h3 class="rv rv-up" style="--rvd:.16s">Resepsi</h3>
+          <div class="when rv rv-up" style="--rvd:.24s">Sabtu, 12 Juni 2027 · 11.00 – 13.00 WIB</div>
+          <p class="rv rv-up" style="--rvd:.32s"><b>The Ritz-Carlton Jakarta, Pacific Place</b><br>Jakarta Selatan</p>
+          <a class="btn rv rv-pop" style="--rvd:.4s" href="https://maps.google.com/?q=The+Ritz-Carlton+Jakarta+Pacific+Place" target="_blank" rel="noopener">LIHAT LOKASI</a>
+          <a class="btn btn-alt rv rv-pop" style="--rvd:.4s" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Resepsi+Meyzsa+%26+Fahrezzi&amp;dates=20270612T040000Z%2F20270612T060000Z&amp;details=Resepsi+Pernikahan+Meyzsa+Putri+Ananda+%26+Ahmad+Fahrezzi+Pratama&amp;location=The+Ritz-Carlton+Jakarta%2C+Pacific+Place%2C+Jakarta+Selatan" target="_blank" rel="noopener">SIMPAN KE KALENDER</a>
+          <button class="btn btn-alt rv rv-pop" style="--rvd:.48s" type="button" data-ics data-file="resepsi-meyzsa-fahrezzi" data-title="Resepsi Meyzsa &amp; Fahrezzi" data-start="20270612T040000Z" data-end="20270612T060000Z" data-loc="The Ritz-Carlton Jakarta, Pacific Place, Jakarta Selatan" data-desc="Resepsi Pernikahan Meyzsa Putri Ananda &amp; Ahmad Fahrezzi Pratama">UNDUH .ICS</button>
         </div>
 
         <div class="card rv rv-zoom" style="margin-top:26px;text-align:center">
-          <h3 class="sub-h" style="margin-top:0">Dresscode Tamu</h3>
-          <p class="sub-sub">Berkenan hadir dengan nuansa warna berikut</p>
-          <div class="dc-chips"><span class="dc-chip"><span class="dc-dot" style="background:#14608F"></span>Biru Laut</span><span class="dc-chip"><span class="dc-dot" style="background:#FDF7EA"></span>Putih Gading</span><span class="dc-chip"><span class="dc-dot" style="background:#C93A3A"></span>Merah Mercusuar</span><span class="dc-chip"><span class="dc-dot" style="background:#F3E6CF"></span>Krem Pasir</span><span class="dc-chip"><span class="dc-dot" style="background:#FF8A70"></span>Coral</span><span class="dc-chip"><span class="dc-dot" style="background:#3D9BC4"></span>Biru Langit</span></div>
-          <p style="font-size:12.5px;line-height:1.65;margin-top:13px">Panduan contoh: busana formal atau semi-formal dengan nuansa di atas akan menyatu indah dengan dekorasi acara. Terima kasih atas pengertiannya.</p>
+          <h3 class="sub-h rv rv-up" style="--rvd:.08s;margin-top:0">Dresscode Tamu</h3>
+          <p class="sub-sub rv rv-up" style="--rvd:.16s">Berkenan hadir dengan nuansa warna berikut</p>
+          <div class="dc-chips"><span class="dc-chip rv rv-pop" style="--rvd:0.20s"><span class="dc-dot" style="background:#14608F"></span>Biru Laut</span><span class="dc-chip rv rv-pop" style="--rvd:0.28s"><span class="dc-dot" style="background:#FDF7EA"></span>Putih Gading</span><span class="dc-chip rv rv-pop" style="--rvd:0.36s"><span class="dc-dot" style="background:#C93A3A"></span>Merah Mercusuar</span><span class="dc-chip rv rv-pop" style="--rvd:0.44s"><span class="dc-dot" style="background:#F3E6CF"></span>Krem Pasir</span><span class="dc-chip rv rv-pop" style="--rvd:0.52s"><span class="dc-dot" style="background:#FF8A70"></span>Coral</span><span class="dc-chip rv rv-pop" style="--rvd:0.60s"><span class="dc-dot" style="background:#3D9BC4"></span>Biru Langit</span></div>
+          <p class="rv rv-up" style="--rvd:.55s;font-size:12.5px;line-height:1.65;margin-top:13px">Panduan contoh: busana formal atau semi-formal dengan nuansa di atas akan menyatu indah dengan dekorasi acara. Terima kasih atas pengertiannya.</p>
         </div>
-        <h3 class="sub-h rv rv-up">Denah &amp; Info Lokasi</h3>
-        <p class="sub-sub rv rv-up">Alamat lengkap &amp; patokan menuju venue (contoh)</p>
+        <h3 class="sub-h rv rv-up" style="--rvd:.05s">Denah &amp; Info Lokasi</h3>
+        <p class="sub-sub rv rv-up" style="--rvd:.14s">Alamat lengkap &amp; patokan menuju venue (contoh)</p>
         <div class="card info-card rv rv-left">
-          <h4>Akad Nikah — Masjid Agung Al-Azhar</h4>
+          <h4 class="rv rv-up" style="--rvd:.14s">Akad Nikah — Masjid Agung Al-Azhar</h4>
           <p>Jl. Sisingamangaraja No. 1, Kebayoran Baru, Jakarta Selatan.</p>
           <p>Patokan: kompleks Al-Azhar di sisi jalan utama Sisingamangaraja, mudah dijangkau kendaraan pribadi maupun transportasi umum. Area parkir tersedia di sekitar kompleks; tamu disarankan tiba ±30 menit lebih awal.</p>
-          <div class="btn-row"><a class="btn" href="https://maps.google.com/?q=Masjid+Agung+Al-Azhar+Jakarta+Selatan" target="_blank" rel="noopener">BUKA PETA</a><a class="btn btn-alt" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Akad+Nikah+Meyzsa+%26+Fahrezzi&amp;dates=20270612T010000Z%2F20270612T030000Z&amp;details=Akad+Nikah+Meyzsa+Putri+Ananda+%26+Ahmad+Fahrezzi+Pratama&amp;location=Masjid+Agung+Al-Azhar%2C+Kebayoran+Baru%2C+Jakarta+Selatan" target="_blank" rel="noopener">SIMPAN KE KALENDER</a></div>
+          <div class="btn-row"><a class="btn rv rv-pop" style="--rvd:.4s" href="https://maps.google.com/?q=Masjid+Agung+Al-Azhar+Jakarta+Selatan" target="_blank" rel="noopener">BUKA PETA</a><a class="btn btn-alt rv rv-pop" style="--rvd:.4s" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Akad+Nikah+Meyzsa+%26+Fahrezzi&amp;dates=20270612T010000Z%2F20270612T030000Z&amp;details=Akad+Nikah+Meyzsa+Putri+Ananda+%26+Ahmad+Fahrezzi+Pratama&amp;location=Masjid+Agung+Al-Azhar%2C+Kebayoran+Baru%2C+Jakarta+Selatan" target="_blank" rel="noopener">SIMPAN KE KALENDER</a></div>
         </div>
         <div class="card info-card rv rv-right">
-          <h4>Resepsi — The Ritz-Carlton Jakarta, Pacific Place</h4>
+          <h4 class="rv rv-up" style="--rvd:.14s">Resepsi — The Ritz-Carlton Jakarta, Pacific Place</h4>
           <p>Jl. Jend. Sudirman Kav. 52–53, SCBD, Senayan, Jakarta Selatan.</p>
           <p>Patokan: berada di kawasan SCBD, terhubung dengan Pacific Place Mall; masuk melalui lobi utama hotel. Area parkir tersedia di gedung mal; tamu disarankan tiba ±30 menit lebih awal.</p>
-          <div class="btn-row"><a class="btn" href="https://maps.google.com/?q=The+Ritz-Carlton+Jakarta+Pacific+Place" target="_blank" rel="noopener">BUKA PETA</a><a class="btn btn-alt" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Resepsi+Meyzsa+%26+Fahrezzi&amp;dates=20270612T040000Z%2F20270612T060000Z&amp;details=Resepsi+Pernikahan+Meyzsa+Putri+Ananda+%26+Ahmad+Fahrezzi+Pratama&amp;location=The+Ritz-Carlton+Jakarta%2C+Pacific+Place%2C+Jakarta+Selatan" target="_blank" rel="noopener">SIMPAN KE KALENDER</a></div>
+          <div class="btn-row"><a class="btn rv rv-pop" style="--rvd:.4s" href="https://maps.google.com/?q=The+Ritz-Carlton+Jakarta+Pacific+Place" target="_blank" rel="noopener">BUKA PETA</a><a class="btn btn-alt rv rv-pop" style="--rvd:.4s" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Resepsi+Meyzsa+%26+Fahrezzi&amp;dates=20270612T040000Z%2F20270612T060000Z&amp;details=Resepsi+Pernikahan+Meyzsa+Putri+Ananda+%26+Ahmad+Fahrezzi+Pratama&amp;location=The+Ritz-Carlton+Jakarta%2C+Pacific+Place%2C+Jakarta+Selatan" target="_blank" rel="noopener">SIMPAN KE KALENDER</a></div>
         </div>
     </section>
 
     <!-- ================= GALERI ================= -->
     <section id="galeri">
+      <img class="sec-orn rv rv-rotr" src="assets/undangya/mercusuar-cinta/mercu-kerang-kipas.webp" alt="" aria-hidden="true" style="top:14px;right:12px;--rvd:.15s">
       <div class="sec-head rv rv-up">
-        <svg class="sec-icon" viewBox="0 0 64 64" aria-hidden="true"><path d="M32 50 C20 44 12 36 12 26 C12 16 22 12 32 20 C42 12 52 16 52 26 C52 36 44 44 32 50 Z" fill="#fdf7ea" stroke="#0d2f4a" stroke-width="2.2"/><path d="M22 28 C26 24 30 24 32 28 C34 24 38 24 42 28" fill="none" stroke="#c93a3a" stroke-width="2.2" stroke-linecap="round"/><path d="M24 36 C28 33 36 33 40 36" fill="none" stroke="#14608f" stroke-width="2.2" stroke-linecap="round"/><path d="M14 54 C22 50 42 50 50 54" fill="none" stroke="#e9b558" stroke-width="2.4" stroke-linecap="round"/></svg>
-        <div class="sec-kicker">GALERI</div>
-        <h2 class="sec-title serif">Galeri Pantai Kami</h2>
-        <p class="sec-sub">Delapan potret di pantai kami — ketuk untuk memperbesar</p>
+        <svg class="sec-icon rv rv-drop" style="--rvd:.05s" viewBox="0 0 64 64" aria-hidden="true"><path d="M32 50 C20 44 12 36 12 26 C12 16 22 12 32 20 C42 12 52 16 52 26 C52 36 44 44 32 50 Z" fill="#fdf7ea" stroke="#0d2f4a" stroke-width="2.2"/><path d="M22 28 C26 24 30 24 32 28 C34 24 38 24 42 28" fill="none" stroke="#c93a3a" stroke-width="2.2" stroke-linecap="round"/><path d="M24 36 C28 33 36 33 40 36" fill="none" stroke="#14608f" stroke-width="2.2" stroke-linecap="round"/><path d="M14 54 C22 50 42 50 50 54" fill="none" stroke="#e9b558" stroke-width="2.4" stroke-linecap="round"/></svg>
+        <div class="sec-kicker rv rv-down" style="--rvd:.12s">GALERI</div>
+        <h2 class="sec-title serif rv rv-up" style="--rvd:.2s">Galeri Pantai Kami</h2>
+        <p class="sec-sub rv rv-up" style="--rvd:.3s">Delapan potret di pantai kami — ketuk untuk memperbesar</p>
       </div>
-      <div class="gal-hint">— GESER KANAN · KIRI —</div>
-      <div class="rail-label">POTRET PILIHAN · FRAME KAYU &amp; TALI</div>
+      <div class="gal-hint rv rv-wide" style="--rvd:.05s">— GESER KANAN · KIRI —</div>
+      <div class="rail-label rv rv-left" style="--rvd:.1s">POTRET PILIHAN · FRAME KAYU &amp; TALI</div>
       <div class="gal-rail" id="railMain">
-        <div class="gal-slide rv rv-up"><span class="gal-num">01 / 08</span><figure><div class="frame-pier ph"><img class="gal-photo" src="assets/undangya/mercusuar-cinta/galeri-1.webp" alt="Pasangan berjalan bergandengan di dermaga kayu" loading="lazy"></div><figcaption class="gal-cap">Dermaga Kayu</figcaption></figure></div>
-        <div class="gal-slide rv rv-up"><span class="gal-num">02 / 08</span><figure><div class="frame-pier ph"><img class="gal-photo" src="assets/undangya/mercusuar-cinta/galeri-2.webp" alt="Pasangan di samping perahu layar putih" loading="lazy"></div><figcaption class="gal-cap">Perahu Layar</figcaption></figure></div>
-        <div class="gal-slide rv rv-up"><span class="gal-num">03 / 08</span><figure><div class="frame-pier ph"><img class="gal-photo" src="assets/undangya/mercusuar-cinta/galeri-3.webp" alt="Pasangan di tebing di bawah mercusuar merah-putih" loading="lazy"></div><figcaption class="gal-cap">Tebing Mercusuar</figcaption></figure></div>
-        <div class="gal-slide rv rv-up"><span class="gal-num">04 / 08</span><figure><div class="frame-pier ph"><img class="gal-photo" src="assets/undangya/mercusuar-cinta/galeri-4.webp" alt="Pasangan duduk di pasir saat senja" loading="lazy"></div><figcaption class="gal-cap">Pasir Senja</figcaption></figure></div>
+        <div class="gal-slide rv rv-rotr" style="--rvd:0.00s"><span class="gal-num">01 / 08</span><figure><div class="frame-pier ph"><img class="gal-photo" src="assets/undangya/mercusuar-cinta/galeri-1.webp" alt="Pasangan berjalan bergandengan di dermaga kayu" loading="lazy"></div><figcaption class="gal-cap">Dermaga Kayu</figcaption></figure></div>
+        <div class="gal-slide rv rv-up" style="--rvd:0.05s"><span class="gal-num">02 / 08</span><figure><div class="frame-pier ph"><img class="gal-photo" src="assets/undangya/mercusuar-cinta/galeri-2.webp" alt="Pasangan di samping perahu layar putih" loading="lazy"></div><figcaption class="gal-cap">Perahu Layar</figcaption></figure></div>
+        <div class="gal-slide rv rv-zoom" style="--rvd:0.10s"><span class="gal-num">03 / 08</span><figure><div class="frame-pier ph"><img class="gal-photo" src="assets/undangya/mercusuar-cinta/galeri-3.webp" alt="Pasangan di tebing di bawah mercusuar merah-putih" loading="lazy"></div><figcaption class="gal-cap">Tebing Mercusuar</figcaption></figure></div>
+        <div class="gal-slide rv rv-rotl" style="--rvd:0.15s"><span class="gal-num">04 / 08</span><figure><div class="frame-pier ph"><img class="gal-photo" src="assets/undangya/mercusuar-cinta/galeri-4.webp" alt="Pasangan duduk di pasir saat senja" loading="lazy"></div><figcaption class="gal-cap">Pasir Senja</figcaption></figure></div>
       </div>
-      <div class="rail-meta"><span class="rail-frac" id="fracMain">1 / 4</span><span class="rail-dots" id="dotsMain"></span></div>
-      <div class="rail-label">POTRET LEPAS · TANPA FRAME</div>
+      <div class="rail-meta rv rv-up" style="--rvd:.15s"><span class="rail-frac" id="fracMain">1 / 4</span><span class="rail-dots" id="dotsMain"></span></div>
+      <div class="rail-label rv rv-left" style="--rvd:.1s">POTRET LEPAS · TANPA FRAME</div>
       <div class="gal-rail" id="railSub">
-        <div class="gal-slide small rv rv-up"><span class="gal-num">05 / 08</span><figure><div class="plain ph"><img class="gal-photo" src="assets/undangya/mercusuar-cinta/galeri-5.webp" alt="Pasangan di ayunan pantai berhias kamboja" loading="lazy"></div><figcaption class="gal-cap">Ayunan Pantai</figcaption></figure></div>
-        <div class="gal-slide small rv rv-up"><span class="gal-num">06 / 08</span><figure><div class="plain ph"><img class="gal-photo" src="assets/undangya/mercusuar-cinta/galeri-6.webp" alt="Pasangan di dekat perahu nelayan pada pagi hari" loading="lazy"></div><figcaption class="gal-cap">Perahu Nelayan Pagi</figcaption></figure></div>
-        <div class="gal-slide small rv rv-up"><span class="gal-num">07 / 08</span><figure><div class="plain ph"><img class="gal-photo" src="assets/undangya/mercusuar-cinta/galeri-7.webp" alt="Pasangan di karang dengan ombak menyembur" loading="lazy"></div><figcaption class="gal-cap">Karang &amp; Ombak</figcaption></figure></div>
-        <div class="gal-slide small rv rv-up"><span class="gal-num">08 / 08</span><figure><div class="plain ph"><img class="gal-photo" src="assets/undangya/mercusuar-cinta/galeri-8.webp" alt="Pasangan di dermaga malam berlampu hangat" loading="lazy"></div><figcaption class="gal-cap">Malam Lampu Dermaga</figcaption></figure></div>
+        <div class="gal-slide small rv rv-up" style="--rvd:0.00s"><span class="gal-num">05 / 08</span><figure><div class="plain ph"><img class="gal-photo" src="assets/undangya/mercusuar-cinta/galeri-5.webp" alt="Pasangan di ayunan pantai berhias kamboja" loading="lazy"></div><figcaption class="gal-cap">Ayunan Pantai</figcaption></figure></div>
+        <div class="gal-slide small rv rv-rotr" style="--rvd:0.05s"><span class="gal-num">06 / 08</span><figure><div class="plain ph"><img class="gal-photo" src="assets/undangya/mercusuar-cinta/galeri-6.webp" alt="Pasangan di dekat perahu nelayan pada pagi hari" loading="lazy"></div><figcaption class="gal-cap">Perahu Nelayan Pagi</figcaption></figure></div>
+        <div class="gal-slide small rv rv-zoom" style="--rvd:0.10s"><span class="gal-num">07 / 08</span><figure><div class="plain ph"><img class="gal-photo" src="assets/undangya/mercusuar-cinta/galeri-7.webp" alt="Pasangan di karang dengan ombak menyembur" loading="lazy"></div><figcaption class="gal-cap">Karang &amp; Ombak</figcaption></figure></div>
+        <div class="gal-slide small rv rv-rotl" style="--rvd:0.15s"><span class="gal-num">08 / 08</span><figure><div class="plain ph"><img class="gal-photo" src="assets/undangya/mercusuar-cinta/galeri-8.webp" alt="Pasangan di dermaga malam berlampu hangat" loading="lazy"></div><figcaption class="gal-cap">Malam Lampu Dermaga</figcaption></figure></div>
       </div>
-      <div class="rail-meta"><span class="rail-frac" id="fracSub">1 / 4</span><span class="rail-dots" id="dotsSub"></span></div>
+      <div class="rail-meta rv rv-up" style="--rvd:.15s"><span class="rail-frac" id="fracSub">1 / 4</span><span class="rail-dots" id="dotsSub"></span></div>
     </section>
 
     <!-- ================= CUPLIKAN / VIDEO TEASER ================= -->
     <section id="cuplikan">
+      <img class="sec-orn rv rv-rotl" src="assets/undangya/mercusuar-cinta/mercu-bintang-laut-coral.webp" alt="" aria-hidden="true" style="top:14px;left:12px;--rvd:.15s">
         <div class="sec-head rv rv-up">
-          <svg class="sec-icon" viewBox="0 0 64 64" aria-hidden="true"><path d="M32 4 L36 14 L47 14 L38 21 L41 32 L32 25 L23 32 L26 21 L17 14 L28 14 Z" fill="#ffd98a" stroke="#c9862a" stroke-width="2"/><path d="M14 44 C22 40 42 40 50 44 M18 52 C25 48 39 48 46 52" fill="none" stroke="#14608f" stroke-width="2.6" stroke-linecap="round"/></svg>
-          <div class="sec-kicker">CUPLIKAN</div>
-          <h2 class="sec-title serif">Video Teaser Pantai</h2>
-          <p class="sec-sub">Sepotong kisah kami dalam bingkai bergerak</p>
+          <svg class="sec-icon rv rv-drop" style="--rvd:.05s" viewBox="0 0 64 64" aria-hidden="true"><path d="M32 4 L36 14 L47 14 L38 21 L41 32 L32 25 L23 32 L26 21 L17 14 L28 14 Z" fill="#ffd98a" stroke="#c9862a" stroke-width="2"/><path d="M14 44 C22 40 42 40 50 44 M18 52 C25 48 39 48 46 52" fill="none" stroke="#14608f" stroke-width="2.6" stroke-linecap="round"/></svg>
+          <div class="sec-kicker rv rv-down" style="--rvd:.12s">CUPLIKAN</div>
+          <h2 class="sec-title serif rv rv-up" style="--rvd:.2s">Video Teaser Pantai</h2>
+          <p class="sec-sub rv rv-up" style="--rvd:.3s">Sepotong kisah kami dalam bingkai bergerak</p>
         </div>
         <div class="rv rv-zoom" style="border:3px solid #6d4a2f;border-radius:14px;padding:6px;background:#54381f;box-shadow:0 16px 36px rgba(13,47,74,.35)">
           <div class="vid-wrap" id="vidWrap">
             <div class="vid-stage">
               <video id="teaserVideo" src="assets/undangya/mercusuar-cinta/teaser.mp4" poster="assets/undangya/mercusuar-cinta/teaser-poster.webp" preload="none" playsinline controls aria-label="Video teaser Meyzsa dan Fahrezzi"></video>
-              <button class="vid-btn" id="vidBtn" type="button" aria-label="Putar atau jeda video teaser">▶</button>
+              <button class="vid-btn rv rv-pop" style="--rvd:.3s" id="vidBtn" type="button" aria-label="Putar atau jeda video teaser">▶</button>
             </div>
           </div>
         </div>
@@ -422,122 +472,127 @@ body.opened #btnMusic{display:flex}
 
     <!-- ================= LIVE + TAGAR + GALERI TAMU ================= -->
     <section id="live">
+      <img class="sec-orn orn-melayang rv rv-zoom" src="assets/undangya/mercusuar-cinta/mercu-pelampung.webp" alt="" aria-hidden="true" style="top:14px;right:12px;--sd:7s;--rvd:.15s">
         <div class="sec-head rv rv-up">
-          <svg class="sec-icon" viewBox="0 0 64 64" aria-hidden="true"><path d="M12 30 C18 20 26 14 32 14 C38 14 46 20 52 30 C46 40 38 46 32 46 C26 46 18 40 12 30 Z" fill="none" stroke="#0d2f4a" stroke-width="2.4"/><circle cx="32" cy="30" r="7" fill="#c93a3a"/><path d="M20 54 C26 51 38 51 44 54" fill="none" stroke="#14608f" stroke-width="2.4" stroke-linecap="round"/></svg>
-          <div class="sec-kicker">LIVE STREAMING</div>
-          <h2 class="sec-title serif">Siaran Langsung</h2>
-          <p class="sec-sub">Untuk keluarga &amp; sahabat yang berhalangan hadir langsung</p>
+          <svg class="sec-icon rv rv-drop" style="--rvd:.05s" viewBox="0 0 64 64" aria-hidden="true"><path d="M12 30 C18 20 26 14 32 14 C38 14 46 20 52 30 C46 40 38 46 32 46 C26 46 18 40 12 30 Z" fill="none" stroke="#0d2f4a" stroke-width="2.4"/><circle cx="32" cy="30" r="7" fill="#c93a3a"/><path d="M20 54 C26 51 38 51 44 54" fill="none" stroke="#14608f" stroke-width="2.4" stroke-linecap="round"/></svg>
+          <div class="sec-kicker rv rv-down" style="--rvd:.12s">LIVE STREAMING</div>
+          <h2 class="sec-title serif rv rv-up" style="--rvd:.2s">Siaran Langsung</h2>
+          <p class="sec-sub rv rv-up" style="--rvd:.3s">Untuk keluarga &amp; sahabat yang berhalangan hadir langsung</p>
         </div>
         <div class="card rv rv-zoom" style="text-align:center">
-          <span class="live-badge"><span class="live-dot" aria-hidden="true"></span>LIVE · CONTOH</span>
-          <h3 class="sub-h">Resepsi Pernikahan</h3>
-          <p style="font-size:13.5px;line-height:1.7"><b>Sabtu, 12 Juni 2027 · mulai 11.00 WIB</b><br>menyesuaikan jam resepsi — The Ritz-Carlton Jakarta, Pacific Place</p>
-          <a class="btn" href="#" onclick="return false" aria-disabled="true">▶ TONTON LIVE</a>
-          <p class="demo-note">Tautan contoh (demo) — pada undangan asli, tombol ini mengarah ke siaran langsung mempelai dan aktif menjelang acara.</p>
-          <svg class="divider" viewBox="0 0 130 12" aria-hidden="true" style="margin:20px auto 14px"><path d="M2 6 H46 M84 6 H128" stroke="#14608f" stroke-width="1.4"/><path d="M65 1 L70 6 L65 11 L60 6 Z" fill="none" stroke="#c93a3a" stroke-width="1.4"/></svg>
-          <div class="tag-big">#MeyzsaFahrezzi</div>
-          <p style="font-size:12.5px;line-height:1.65;margin-top:4px">Abadikan momen bahagia Anda dan tandai dengan tagar resmi kami.</p>
-          <button class="salin-btn" type="button" data-copytext="#MeyzsaFahrezzi">SALIN TAGAR</button>
+          <span class="live-badge rv rv-pop" style="--rvd:.1s"><span class="live-dot" aria-hidden="true"></span>LIVE · CONTOH</span>
+          <h3 class="sub-h rv rv-up" style="--rvd:.18s">Resepsi Pernikahan</h3>
+          <p class="rv rv-up" style="--rvd:.26s;font-size:13.5px;line-height:1.7"><b>Sabtu, 12 Juni 2027 · mulai 11.00 WIB</b><br>menyesuaikan jam resepsi — The Ritz-Carlton Jakarta, Pacific Place</p>
+          <a class="btn rv rv-pop" style="--rvd:.4s" href="#" onclick="return false" aria-disabled="true">▶ TONTON LIVE</a>
+          <p class="demo-note rv rv-up" style="--rvd:.24s">Tautan contoh (demo) — pada undangan asli, tombol ini mengarah ke siaran langsung mempelai dan aktif menjelang acara.</p>
+          <svg class="divider rv rv-wide" viewBox="0 0 130 12" aria-hidden="true" style="--rvd:.34s;margin:20px auto 14px"><path d="M2 6 H46 M84 6 H128" stroke="#14608f" stroke-width="1.4"/><path d="M65 1 L70 6 L65 11 L60 6 Z" fill="none" stroke="#c93a3a" stroke-width="1.4"/></svg>
+          <div class="tag-big rv rv-zoom" style="--rvd:.2s">#MeyzsaFahrezzi</div>
+          <p class="rv rv-up" style="--rvd:.3s;font-size:12.5px;line-height:1.65;margin-top:4px">Abadikan momen bahagia Anda dan tandai dengan tagar resmi kami.</p>
+          <button class="salin-btn rv rv-pop" style="--rvd:.38s" type="button" data-copytext="#MeyzsaFahrezzi">SALIN TAGAR</button>
         </div>
         <div class="card rv rv-zoom" style="text-align:center;margin-top:16px">
-          <div class="sec-kicker">GALERI TAMU</div>
-          <h3 class="sub-h">Galeri Tamu</h3>
-          <p style="font-size:13px;line-height:1.7">Bagikan momen bahagia Anda selama acara — unggah foto Anda di sini dan tandai juga dengan tagar <b>#MeyzsaFahrezzi</b>.</p>
-          <label class="salin-btn gt-up" for="gtInput">＋ UNGGAH FOTO</label>
+          <div class="sec-kicker rv rv-down" style="--rvd:.12s">GALERI TAMU</div>
+          <h3 class="sub-h rv rv-up" style="--rvd:.18s">Galeri Tamu</h3>
+          <p class="rv rv-up" style="--rvd:.26s;font-size:13px;line-height:1.7">Bagikan momen bahagia Anda selama acara — unggah foto Anda di sini dan tandai juga dengan tagar <b>#MeyzsaFahrezzi</b>.</p>
+          <label class="salin-btn gt-up rv rv-pop" style="--rvd:.36s" for="gtInput">＋ UNGGAH FOTO</label>
           <input id="gtInput" type="file" accept="image/*" multiple hidden>
           <div class="gt-grid" id="gtGrid" aria-live="polite"></div>
-          <p class="gt-empty" id="gtEmpty">Jadilah yang pertama membagikan momen — ketuk tombol unggah.</p>
-          <p class="demo-note">Contoh — foto tersimpan di perangkat ini saja (penyimpanan lokal peramban), tidak diunggah ke server.</p>
+          <p class="gt-empty rv rv-up" style="--rvd:.3s" id="gtEmpty">Jadilah yang pertama membagikan momen — ketuk tombol unggah.</p>
+          <p class="demo-note rv rv-up" style="--rvd:.24s">Contoh — foto tersimpan di perangkat ini saja (penyimpanan lokal peramban), tidak diunggah ke server.</p>
         </div>
     </section>
 
     <!-- ================= RSVP ================= -->
     <section id="rsvp">
+      <img class="sec-orn orn-melayang rv rv-rotr" src="assets/undangya/mercusuar-cinta/mercu-botol-pesan.webp" alt="" aria-hidden="true" style="top:14px;left:10px;--sd:6.8s;--rvd:.15s">
         <div class="sec-head rv rv-up">
-          <svg class="sec-icon" viewBox="0 0 64 64" aria-hidden="true"><path d="M14 18 C14 12 20 8 26 10 C34 12 36 20 32 26 C28 20 18 24 14 18 Z M50 18 C50 12 44 8 38 10 C30 12 28 20 32 26 C36 20 46 24 50 18 Z" fill="#fdf7ea" stroke="#0d2f4a" stroke-width="2"/><path d="M32 26 C30 34 32 42 38 48 M32 26 C34 34 32 42 26 48" fill="none" stroke="#14608f" stroke-width="2.2"/><circle cx="32" cy="52" r="3.4" fill="#ff8a70" stroke="#a52a2a" stroke-width="1.6"/></svg>
-          <div class="sec-kicker">RSVP &amp; UCAPAN</div>
-          <h2 class="sec-title serif">Buku Tamu</h2>
-          <p class="sec-sub">Konfirmasi kehadiran &amp; tuliskan doa terbaik Anda</p>
+          <svg class="sec-icon rv rv-drop" style="--rvd:.05s" viewBox="0 0 64 64" aria-hidden="true"><path d="M14 18 C14 12 20 8 26 10 C34 12 36 20 32 26 C28 20 18 24 14 18 Z M50 18 C50 12 44 8 38 10 C30 12 28 20 32 26 C36 20 46 24 50 18 Z" fill="#fdf7ea" stroke="#0d2f4a" stroke-width="2"/><path d="M32 26 C30 34 32 42 38 48 M32 26 C34 34 32 42 26 48" fill="none" stroke="#14608f" stroke-width="2.2"/><circle cx="32" cy="52" r="3.4" fill="#ff8a70" stroke="#a52a2a" stroke-width="1.6"/></svg>
+          <div class="sec-kicker rv rv-down" style="--rvd:.12s">RSVP &amp; UCAPAN</div>
+          <h2 class="sec-title serif rv rv-up" style="--rvd:.2s">Buku Tamu</h2>
+          <p class="sec-sub rv rv-up" style="--rvd:.3s">Konfirmasi kehadiran &amp; tuliskan doa terbaik Anda</p>
         </div>
         <div class="card rv rv-zoom">
           <form id="rsvpForm" novalidate>
-            <div class="field"><label for="rsvpName">Nama Tamu</label><input id="rsvpName" type="text" placeholder="Nama Anda" autocomplete="name"></div>
-            <div class="field"><label for="rsvpAttend">Konfirmasi Kehadiran</label>
+            <div class="field rv rv-up" style="--rvd:0.06s"><label for="rsvpName">Nama Tamu</label><input id="rsvpName" type="text" placeholder="Nama Anda" autocomplete="name"></div>
+            <div class="field rv rv-up" style="--rvd:0.15s"><label for="rsvpAttend">Konfirmasi Kehadiran</label>
               <select id="rsvpAttend"><option value="Hadir">Hadir, insya Allah</option><option value="Berhalangan">Berhalangan hadir</option><option value="Masih ragu">Masih ragu</option></select></div>
-            <div class="field"><label for="rsvpMsg">Doa &amp; Ucapan</label><textarea id="rsvpMsg" placeholder="Tuliskan doa untuk kedua mempelai..."></textarea></div>
-            <button class="btn" type="submit" style="width:100%">KIRIM UCAPAN</button>
+            <div class="field rv rv-up" style="--rvd:0.24s"><label for="rsvpMsg">Doa &amp; Ucapan</label><textarea id="rsvpMsg" placeholder="Tuliskan doa untuk kedua mempelai..."></textarea></div>
+            <button class="btn rv rv-pop" type="submit" style="--rvd:.3s;width:100%">KIRIM UCAPAN</button>
           </form>
-          <p class="demo-note">Fitur demo pada contoh undangan ini — ucapan tersimpan hanya di perangkat Anda dan tidak terkirim ke server.</p>
+          <p class="demo-note rv rv-up" style="--rvd:.24s">Fitur demo pada contoh undangan ini — ucapan tersimpan hanya di perangkat Anda dan tidak terkirim ke server.</p>
           <div class="gb-list" id="guestbookList" aria-live="polite"></div>
         </div>
     </section>
 
     <!-- ================= BUKU TAMU & QR ================= -->
     <section id="bukutamu">
+      <img class="sec-orn orn-spin rv rv-zoom" src="assets/undangya/mercusuar-cinta/mercu-kompas-mawar.webp" alt="" aria-hidden="true" style="top:12px;right:12px;--rvd:.15s">
         <div class="sec-head rv rv-up">
-          <svg class="sec-icon" viewBox="0 0 64 64" aria-hidden="true"><rect x="10" y="10" width="18" height="18" rx="3" fill="none" stroke="#0d2f4a" stroke-width="2.4"/><rect x="36" y="10" width="18" height="18" rx="3" fill="none" stroke="#0d2f4a" stroke-width="2.4"/><rect x="10" y="36" width="18" height="18" rx="3" fill="none" stroke="#0d2f4a" stroke-width="2.4"/><rect x="17" y="17" width="4" height="4" fill="#c93a3a"/><rect x="43" y="17" width="4" height="4" fill="#c93a3a"/><rect x="17" y="43" width="4" height="4" fill="#c93a3a"/><path d="M36 36 H44 V44 H36 Z M46 46 H54 V54 H46 Z" fill="#14608f"/></svg>
-          <div class="sec-kicker">BUKU TAMU &amp; CHECK-IN</div>
-          <h2 class="sec-title serif">Presensi Digital</h2>
-          <p class="sec-sub">Pindai kode QR ini atau isi buku tamu saat tiba di lokasi</p>
+          <svg class="sec-icon rv rv-drop" style="--rvd:.05s" viewBox="0 0 64 64" aria-hidden="true"><rect x="10" y="10" width="18" height="18" rx="3" fill="none" stroke="#0d2f4a" stroke-width="2.4"/><rect x="36" y="10" width="18" height="18" rx="3" fill="none" stroke="#0d2f4a" stroke-width="2.4"/><rect x="10" y="36" width="18" height="18" rx="3" fill="none" stroke="#0d2f4a" stroke-width="2.4"/><rect x="17" y="17" width="4" height="4" fill="#c93a3a"/><rect x="43" y="17" width="4" height="4" fill="#c93a3a"/><rect x="17" y="43" width="4" height="4" fill="#c93a3a"/><path d="M36 36 H44 V44 H36 Z M46 46 H54 V54 H46 Z" fill="#14608f"/></svg>
+          <div class="sec-kicker rv rv-down" style="--rvd:.12s">BUKU TAMU &amp; CHECK-IN</div>
+          <h2 class="sec-title serif rv rv-up" style="--rvd:.2s">Presensi Digital</h2>
+          <p class="sec-sub rv rv-up" style="--rvd:.3s">Pindai kode QR ini atau isi buku tamu saat tiba di lokasi</p>
         </div>
         <div class="card rv rv-zoom" style="text-align:center">
-          <div class="qr-box"><img src="assets/undangya/mercusuar-cinta/qr-undangan.webp" alt="Kode QR menuju halaman undangan Mercusuar Cinta" loading="lazy" decoding="async"></div>
-          <p style="font-size:12.5px;line-height:1.65">Kode QR membuka halaman undangan yang sedang Anda baca — tunjukkan kepada penerima tamu saat check-in.</p>
+          <div class="qr-box rv rv-zoom" style="--rvd:.12s"><img src="assets/undangya/mercusuar-cinta/qr-undangan.webp" alt="Kode QR menuju halaman undangan Mercusuar Cinta" loading="lazy" decoding="async"></div>
+          <p class="rv rv-up" style="--rvd:.22s;font-size:12.5px;line-height:1.65">Kode QR membuka halaman undangan yang sedang Anda baca — tunjukkan kepada penerima tamu saat check-in.</p>
           <form id="ciForm" novalidate style="text-align:left;margin-top:18px">
-            <div class="field"><label for="ciName">Nama Tamu</label><input id="ciName" type="text" placeholder="Nama Anda" autocomplete="name"></div>
-            <div class="field"><label for="ciSesi">Sesi Kehadiran</label>
+            <div class="field rv rv-up" style="--rvd:0.33s"><label for="ciName">Nama Tamu</label><input id="ciName" type="text" placeholder="Nama Anda" autocomplete="name"></div>
+            <div class="field rv rv-up" style="--rvd:0.42s"><label for="ciSesi">Sesi Kehadiran</label>
               <select id="ciSesi"><option value="Akad Nikah">Akad Nikah</option><option value="Resepsi">Resepsi</option></select></div>
-            <button class="btn" type="submit" style="width:100%;border:none">CHECK-IN (DEMO)</button>
+            <button class="btn rv rv-pop" type="submit" style="--rvd:.3s;width:100%;border:none">CHECK-IN (DEMO)</button>
           </form>
-          <p class="demo-note">Fitur demo pada contoh undangan ini — data check-in tersimpan hanya di perangkat Anda.</p>
+          <p class="demo-note rv rv-up" style="--rvd:.24s">Fitur demo pada contoh undangan ini — data check-in tersimpan hanya di perangkat Anda.</p>
           <div class="gb-list" id="ciList" aria-live="polite"></div>
         </div>
     </section>
 
     <!-- ================= AMPLOP ================= -->
     <section id="amplop">
+      <img class="sec-orn rv rv-zoom" src="assets/undangya/mercusuar-cinta/mercu-kerang-mutiara.webp" alt="" aria-hidden="true" style="top:14px;left:12px;--rvd:.15s">
       <div class="sec-head rv rv-up head-glass">
-        <svg class="sec-icon" viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="16" width="48" height="34" rx="4" fill="#fdf7ea" stroke="#0d2f4a" stroke-width="2.4"/><path d="M9 18 L32 36 L55 18" fill="none" stroke="#c93a3a" stroke-width="2.4"/><path d="M32 30 C28 26 22 28 22 33 C22 38 28 40 32 44 C36 40 42 38 42 33 C42 28 36 26 32 30 Z" fill="#ff8a70"/></svg>
-        <div class="sec-kicker">AMPLOP DIGITAL</div>
-        <h2 class="sec-title serif">Tanda Kasih</h2>
-        <p class="sec-sub">Doa restu Anda adalah hadiah terindah. Bagi yang berkenan memberi tanda kasih:</p>
+        <svg class="sec-icon rv rv-drop" style="--rvd:.05s" viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="16" width="48" height="34" rx="4" fill="#fdf7ea" stroke="#0d2f4a" stroke-width="2.4"/><path d="M9 18 L32 36 L55 18" fill="none" stroke="#c93a3a" stroke-width="2.4"/><path d="M32 30 C28 26 22 28 22 33 C22 38 28 40 32 44 C36 40 42 38 42 33 C42 28 36 26 32 30 Z" fill="#ff8a70"/></svg>
+        <div class="sec-kicker rv rv-down" style="--rvd:.12s">AMPLOP DIGITAL</div>
+        <h2 class="sec-title serif rv rv-up" style="--rvd:.2s">Tanda Kasih</h2>
+        <p class="sec-sub rv rv-up" style="--rvd:.3s">Doa restu Anda adalah hadiah terindah. Bagi yang berkenan memberi tanda kasih:</p>
       </div>
       <div class="card acc-card rv rv-left">
-        <div class="bank">BCA</div>
-        <div class="acc-num" id="accBca">1234567890</div>
-        <div class="acc-name">a.n. Meyzsa Putri Ananda</div>
-        <button class="copy-btn" type="button" data-copy="accBca">SALIN NOMOR</button>
+        <div class="bank rv rv-down" style="--rvd:.08s">BCA</div>
+        <div class="acc-num rv rv-zoom" style="--rvd:.18s" id="accBca">1234567890</div>
+        <div class="acc-name rv rv-up" style="--rvd:.26s">a.n. Meyzsa Putri Ananda</div>
+        <button class="copy-btn rv rv-pop" style="--rvd:.34s" type="button" data-copy="accBca">SALIN NOMOR</button>
       </div>
       <div class="card acc-card rv rv-right">
-        <div class="bank">DANA</div>
-        <div class="acc-num" id="accDana">0812-3456-7890</div>
-        <div class="acc-name">a.n. Meyzsa Putri Ananda</div>
-        <button class="copy-btn" type="button" data-copy="accDana">SALIN NOMOR</button>
+        <div class="bank rv rv-down" style="--rvd:.08s">DANA</div>
+        <div class="acc-num rv rv-zoom" style="--rvd:.18s" id="accDana">0812-3456-7890</div>
+        <div class="acc-name rv rv-up" style="--rvd:.26s">a.n. Meyzsa Putri Ananda</div>
+        <button class="copy-btn rv rv-pop" style="--rvd:.34s" type="button" data-copy="accDana">SALIN NOMOR</button>
       </div>
       <p class="demo-note rv rv-up">Nomor di atas adalah contoh untuk keperluan demo tampilan undangan.</p>
       <div class="card acc-card rv rv-zoom" style="margin-top:20px">
-        <div class="bank" style="font-size:16px;letter-spacing:.1em">KIRIM KADO FISIK</div>
-        <p style="font-size:13.5px;line-height:1.75;margin-top:8px">Kediaman Mempelai Wanita<br>Jl. Melati Indah No. 12, Kebayoran Baru,<br>Jakarta Selatan 12120 <span style="opacity:.65">(alamat contoh)</span></p>
-        <button class="salin-btn" type="button" data-copytext="Kediaman Mempelai Wanita — Jl. Melati Indah No. 12, Kebayoran Baru, Jakarta Selatan 12120 (alamat contoh)">SALIN ALAMAT</button>
+        <div class="bank rv rv-down" style="--rvd:.08s;font-size:16px;letter-spacing:.1em">KIRIM KADO FISIK</div>
+        <p class="rv rv-up" style="--rvd:.2s;font-size:13.5px;line-height:1.75;margin-top:8px">Kediaman Mempelai Wanita<br>Jl. Melati Indah No. 12, Kebayoran Baru,<br>Jakarta Selatan 12120 <span style="opacity:.65">(alamat contoh)</span></p>
+        <button class="salin-btn rv rv-pop" style="--rvd:.3s" type="button" data-copytext="Kediaman Mempelai Wanita — Jl. Melati Indah No. 12, Kebayoran Baru, Jakarta Selatan 12120 (alamat contoh)">SALIN ALAMAT</button>
       </div>
     </section>
 
     <!-- ================= TURUT MENGUNDANG ================= -->
     <section id="turut">
+      <img class="sec-orn orn-melayang rv rv-up" src="assets/undangya/mercusuar-cinta/mercu-camar-pasangan.webp" alt="" aria-hidden="true" style="top:14px;right:12px;--sd:7.4s;--rvd:.15s">
         <div class="sec-head rv rv-up">
-          <svg class="sec-icon" viewBox="0 0 64 64" aria-hidden="true"><circle cx="22" cy="22" r="8" fill="#bfe3f2" stroke="#0d2f4a" stroke-width="2.2"/><circle cx="43" cy="22" r="8" fill="#ffe1d6" stroke="#0d2f4a" stroke-width="2.2"/><path d="M8 52 C10 42 16 38 22 38 C28 38 34 42 36 52 M28 52 C30 42 36 38 43 38 C49 38 54 42 56 52" fill="none" stroke="#0d2f4a" stroke-width="2.4" stroke-linecap="round"/></svg>
-          <div class="sec-kicker">TURUT MENGUNDANG</div>
-          <h2 class="sec-title serif">Turut Mengundang</h2>
-          <p class="sec-sub">Segenap keluarga besar kedua mempelai</p>
+          <svg class="sec-icon rv rv-drop" style="--rvd:.05s" viewBox="0 0 64 64" aria-hidden="true"><circle cx="22" cy="22" r="8" fill="#bfe3f2" stroke="#0d2f4a" stroke-width="2.2"/><circle cx="43" cy="22" r="8" fill="#ffe1d6" stroke="#0d2f4a" stroke-width="2.2"/><path d="M8 52 C10 42 16 38 22 38 C28 38 34 42 36 52 M28 52 C30 42 36 38 43 38 C49 38 54 42 56 52" fill="none" stroke="#0d2f4a" stroke-width="2.4" stroke-linecap="round"/></svg>
+          <div class="sec-kicker rv rv-down" style="--rvd:.12s">TURUT MENGUNDANG</div>
+          <h2 class="sec-title serif rv rv-up" style="--rvd:.2s">Turut Mengundang</h2>
+          <p class="sec-sub rv rv-up" style="--rvd:.3s">Segenap keluarga besar kedua mempelai</p>
         </div>
         <div class="turut-grid">
           <div class="card turut-card rv rv-left">
-            <h4>Keluarga Mempelai Wanita</h4>
-            <p>Keluarga Besar Ridwan — Jakarta<br>Keluarga Besar Aminah — Bogor<br>Beserta segenap kerabat &amp; handai tolan</p>
+            <h4 class="rv rv-up" style="--rvd:.14s">Keluarga Mempelai Wanita</h4>
+            <p class="rv rv-up" style="--rvd:.24s">Keluarga Besar Ridwan — Jakarta<br>Keluarga Besar Aminah — Bogor<br>Beserta segenap kerabat &amp; handai tolan</p>
           </div>
           <div class="card turut-card rv rv-right">
-            <h4>Keluarga Mempelai Pria</h4>
-            <p>Keluarga Besar Sutrisno — Jakarta<br>Keluarga Besar Dewi — Tangerang<br>Beserta segenap kerabat &amp; handai tolan</p>
+            <h4 class="rv rv-up" style="--rvd:.14s">Keluarga Mempelai Pria</h4>
+            <p class="rv rv-up" style="--rvd:.24s">Keluarga Besar Sutrisno — Jakarta<br>Keluarga Besar Dewi — Tangerang<br>Beserta segenap kerabat &amp; handai tolan</p>
           </div>
         </div>
         <p class="demo-note rv rv-up">Susunan keluarga di atas adalah contoh untuk tampilan tema.</p>
@@ -545,6 +600,7 @@ body.opened #btnMusic{display:flex}
 
     <!-- ================= PENUTUP ================= -->
     <section id="penutup" style="text-align:center">
+      <img class="sec-orn rv rv-rotl" src="assets/undangya/mercusuar-cinta/mercu-kerang-spiral.webp" alt="" aria-hidden="true" style="top:16px;left:14px;--rvd:.15s">
       <div class="sec-petals" aria-hidden="true"></div>
       <div class="panel-glass" style="padding:30px 22px 26px;position:relative;z-index:2">
         <svg class="sec-icon rv rv-up" viewBox="0 0 64 64" aria-hidden="true" style="width:60px;height:60px"><path d="M26 56 L29 22 H35 L38 56 Z" fill="#fdf7ea" stroke="#0d2f4a" stroke-width="2"/><path d="M27.6 34 H36.4 M26.8 44 H37.2" stroke="#c93a3a" stroke-width="5"/><path d="M28 22 H36 L34 15 H30 Z" fill="#0d2f4a"/><circle cx="32" cy="11" r="4" fill="#ffd98a" stroke="#0d2f4a" stroke-width="1.6"/><path d="M14 56 H50" stroke="#0d2f4a" stroke-width="2.4" stroke-linecap="round"/></svg>
